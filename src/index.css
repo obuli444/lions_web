@@ -1,13 +1,11 @@
 .bg-light{
   background-color: #103F6A !important;
   padding: 16px 84px !important;
+  padding-bottom: 0px !important;
 }
 .m-a-0{
   margin: 0px !important;
 }
 .p-a-0{
   padding: 0px !important;
-}
-.nav-link{
-  
 }

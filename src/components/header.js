@@ -10,7 +10,7 @@ export default function Header() {
   return <React.Fragment>
         <Navbar bg="light" expand="lg">
       <Container className="m-a-0 p-a-0">
-        <Navbar.Brand href="#home"><img src={headerlogo}  alt="header-logo"/></Navbar.Brand>
+        <Navbar.Brand href="#home"><img src={headerlogo} className="header-logo"  alt="header-logo"/></Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Offcanvas
               id={`offcanvasNavbar-expand-${""}`}
@@ -26,7 +26,7 @@ export default function Header() {
                 <Nav className="justify-content-end flex-grow-1 pe-3">
                   <Nav.Link href="#action1">Activities</Nav.Link>
                   <Nav.Link href="#action2">Programs & Initiatives</Nav.Link>
-                  <Nav.Link href="#action2">Resources</Nav.Link>
+                  <Nav.Link href="#action3">Resources</Nav.Link>
                   <NavDropdown
                     title="Our district"
                     id={`offcanvasNavbarDropdown-expand-${""}`}
