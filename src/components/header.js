@@ -9,7 +9,7 @@ import headerlogo from '../assets/header-logo.png';
 export default function Header() {
   return <React.Fragment>
         <Navbar bg="light" expand="lg">
-      <Container className="m-a-0">
+      <Container className="m-a-0 p-a-0">
         <Navbar.Brand href="#home"><img src={headerlogo}  alt="header-logo"/></Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Offcanvas
