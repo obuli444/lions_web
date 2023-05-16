@@ -1,5 +1,5 @@
 import React from "react";
-import CarousalSection from '../components/carousalsection';
+// import CarousalSection from '../components/carousalsection';
 import Ourmissionsection from '../components/ourmissionsection';
 export default function Homepage() {
   return <React.Fragment>
