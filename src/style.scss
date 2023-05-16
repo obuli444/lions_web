@@ -7,7 +7,10 @@ $primary-color: #103F6A;
 $primary-bg : #EEEEEE;
 $active-color: #FACA0E;
 $border-style : solid;
+$primary-font-color: #55565A;
 $linear-bg : linear-gradient(90deg, #0072BA -9.11%, #0EA377 64.42%, #FACA0E 113.44%), #103F6A;
+
+// Icons file import line
 
 .nav-link{
   color : $white;
@@ -99,6 +102,83 @@ font-family: $font-family;
     box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.08);
     border-radius: 8px;
 }
+.carousal-image{
+    object-fit: fill;
+    object-position: center;
+    height: 100vh;
+    overflow: hidden;
+}
+.carousel-caption{
+    bottom: 12rem;
+}
+.carousel-caption > h3{
+    font-weight: bold;
+        font-family: $font-family;
+        font-size: 46px;
+}
+.carousel-caption > p{
+    font-family: $font-family;
+    font-size: 20px;
+    font-weight: 300;
+}
+.home-page-section{
+    padding: 0 84px;
+}
+.p-t-40 {
+    padding-top: 40px;
+}
+.p-t-0{
+    padding-top: 0px !important;
+}
+
+.p-t-84 {
+    padding-top: 84px !important;
+}
+
+.section-header-title {
+    font-family: $font-family;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 40px;
+   margin: 0px !important;
+    color: #000000;
+}
+
+.learnmore {
+    font-family: $font-family;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 18px;
+    color: $primary-color;
+    margin: 0px !important;
+    cursor: pointer;
+
+}
+.text-left{
+    text-align: left !important;
+}
+.text-right{
+    text-align: right !important;
+}
+.align-center-section{
+    display: inline-flex;
+    align-items: center !important; 
+}
+.verticalalign-bottom{
+    vertical-align: bottom !important;
+}
+.learnmore-icon{
+
+}
+.sectiontwo-description {
+    font-family: $font-family;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 24px;
+    line-height: 28px;
+    color: $primary-font-color;
+    text-align: left;
+}
 // Mobile Responsive
 @media screen and (max-device-width: 640px) {
     .bg-light{
@@ -150,5 +230,46 @@ font-family: $font-family;
                 }
                 .web-menu{
                     display: none !important;
+                }
+                .carousal-image{
+                    height: 500px;
+                }
+                .carousel-caption{
+                    bottom: 7rem;
+                }
+                .carousel-caption > h3{
+                    font-weight: bold;
+                        font-family: $font-family;
+                        font-size: 30px !important;
+                }
+                .carousel-caption > p{
+                    font-family: $font-family;
+                    font-size: 14px !important;
+                    font-weight: 300;
+                }
+                .home-page-section{
+                    padding: 0px 16px;
+                }
+                .sectiontwodivider{
+                    width: 100px;
+                }
+                .section-header-title{
+                    font-size: 20px;
+                }
+                .learnmore {
+                    font-size: 14px;
+                }
+                .learnmore-icon{
+                    font-size: 20px;
+                }
+                .p-t-40 {
+                    padding-top: 24px !important;
+                }
+                .p-t-84{
+                    padding-top: 48px !important;
+                }
+                .sectiontwo-description{
+                    font-size: 16px !important;
+                    line-height: 19px;
                 }
                 }
