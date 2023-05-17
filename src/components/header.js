@@ -86,8 +86,8 @@ export default function Header() {
                     );
                   })}
                 </NavDropdown>
-                <Nav.Link className="web-menu">Login</Nav.Link>
-                <Nav.Link className="web-menu">Donate</Nav.Link>
+                <p className="web-menu web-login-btn">Login</p>
+                <p className="web-menu web-donate-btn">Donate</p>
               </Nav>
             </Offcanvas.Body>
             <Nav.Link className="mobile-menu mobile-login-btn">Login</Nav.Link>
