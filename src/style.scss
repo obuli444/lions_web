@@ -13,6 +13,7 @@ $secondary-color: #2E5D88;
 
 // Icons file import line
 
+
 .nav-link{
   color : $white;
   font-family: $font-family !important;
@@ -234,6 +235,9 @@ color: #55565A !important;
 .p-t-40 {
     padding-top: 40px;
 }
+.padding-top-40{
+    padding-top: 40px;  
+}
 .p-t-0{
     padding-top: 0px !important;
 }
@@ -282,6 +286,14 @@ color: #55565A !important;
     line-height: 28px;
     color: $primary-font-color;
     text-align: left;
+    margin: 0px !important;
+}
+.home-programs-carousal{
+    .p-carousel-indicators{
+        display: none !important;
+    }
+}
+.p-carousel .p-carousel-content .p-carousel-prev, .p-carousel .p-carousel-content .p-carousel-next{
     margin: 0px !important;
 }
 // Mobile Responsive
@@ -370,6 +382,9 @@ color: #55565A !important;
                 .p-t-40 {
                     padding-top: 24px !important;
                 }
+                .padding-top-40{
+                    padding-top: 16px !important;
+                }
                 .p-t-84{
                     padding-top: 48px !important;
                 }
@@ -390,5 +405,8 @@ color: #55565A !important;
                             height: 200px !important;
                         }
                     }
+                }
+                .p-carousel .p-carousel-content .p-carousel-prev, .p-carousel .p-carousel-content .p-carousel-next{
+                    display: none !important;
                 }
                 }

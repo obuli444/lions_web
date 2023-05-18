@@ -11,8 +11,6 @@ export default function HomeOurleader(){
   const { fbdbdata: ourmissionsectiontitle } = useFetchCollection(
     "ourmissionsectiontitle"
   );
-  console.log("ourleaderssection", ourmissionsectiontitle);
-  console.log("ourleader", ourleaderssection);
   return (
     <React.Fragment>
       <Box sx={{ flexGrow: 1 }} className="p-t-84">
