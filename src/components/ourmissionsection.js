@@ -6,7 +6,6 @@ import sectiontwodivider from '../assets/sectiontwodivider.png';
 import homesectiontwo from '../assets/homesectiontwo.png';
 export default function Ourmissionsection(){
     const { fbdbdata: ourmissiondata } = useFetchCollection("ourmission");
-    console.log("ourmissiondata",ourmissiondata);
     return (
       <React.Fragment>
         <Box sx={{ flexGrow: 1 }} className="p-t-84">
@@ -39,7 +38,7 @@ export default function Ourmissionsection(){
               <img
                 src={homesectiontwo}
                 alt="homesectiontwo"
-                className="w-100"
+                className="w-100 section-p-t-12"
               />
             </Grid>
           </Grid>
