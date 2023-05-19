@@ -41,7 +41,7 @@ export default function HomeProgramssection() {
   };
   return (
     <React.Fragment>
-           <Box sx={{ flexGrow: 1 }} className="p-t-84">
+           <Box sx={{ flexGrow: 1 }} className="ourleader-p-t-40">
         <Grid container spacing={2}>
           <Grid item xs={12}>
             <img

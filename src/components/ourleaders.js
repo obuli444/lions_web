@@ -3,7 +3,12 @@ import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
 import sectionthreedivider from './../assets/sectionthreedivider.png';
 import { useFetchCollection } from "./getfirebasedata";
-
+import { Carousel } from "primereact/carousel";
+import Card from "@mui/material/Card";
+import CardActions from "@mui/material/CardActions";
+import CardContent from "@mui/material/CardContent";
+import CardMedia from "@mui/material/CardMedia";
+import Typography from "@mui/material/Typography";
 
 export default function HomeOurleader(){
   const { fbdbdata: ourleaderssection } =
@@ -11,9 +16,46 @@ export default function HomeOurleader(){
   const { fbdbdata: ourmissionsectiontitle } = useFetchCollection(
     "ourmissionsectiontitle"
   );
+  console.log("ourleaderssection",ourleaderssection); 
+  const responsiveOptions = [
+    {
+      breakpoint: "1199px",
+      numVisible: 1,
+      numScroll: 1,
+    },
+    {
+      breakpoint: "991px",
+      numVisible: 2,
+      numScroll: 1,
+    },
+    {
+      breakpoint: "767px",
+      numVisible: 1,
+      numScroll: 1,
+    },
+  ];
+
+  const ourleaderTemplate = (leaders) => {
+    const { cardimage, name, designation } = leaders;
+    return (
+      <div className="ourleader-section">
+        <Card sx={{ maxWidth: 350 }}>
+          <CardMedia sx={{ height: 140 }} image={cardimage} title={name} />
+          <CardContent>
+            <Typography gutterBottom variant="h5" component="div">
+              <span className="programs-header-title">{name}</span>
+            </Typography>
+            <Typography variant="body2" className="programs-description-text">
+              {designation}
+            </Typography>
+          </CardContent>
+        </Card>
+      </div>
+    );
+  };
   return (
     <React.Fragment>
-      <Box sx={{ flexGrow: 1 }} className="p-t-84">
+      <Box sx={{ flexGrow: 1 }} className="ourleader-p-t-40">
         <Grid container spacing={2}>
           <Grid item xs={12}>
             <img
@@ -40,18 +82,17 @@ export default function HomeOurleader(){
             </p>
           </Grid>
         </Grid>
-        {/* {ourleaderssection !== null &&
-    <Grid container spacing={2}  sx={{ flexGrow: 1 }}>
-         {ourleaderssection.map((ele, index) => {
-            return (
-                <Grid xs={1} sm={1} md={3}  key={index}>
-              <img src={ele.cardimage} alt={ele.name}/>
-              </Grid>
-          
-            );
-          })}
-   </Grid>
-         } */}
+        <div className="home-programs-carousal ourleaders-carousal padding-top-40">
+          <Carousel
+            value={ourleaderssection !== null ? ourleaderssection : []}
+            numScroll={1}
+            circular
+            autoplayInterval={10000}
+            numVisible={4}
+            responsiveOptions={responsiveOptions}
+            itemTemplate={ourleaderTemplate}
+          />
+        </div>
       </Box>
     </React.Fragment>
   );

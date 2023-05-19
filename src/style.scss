@@ -155,6 +155,20 @@ color: $active-color ;
         }
     }
 }
+.ourleader-section{
+    .MuiPaper-elevation{
+        max-width: 100% !important;
+        margin: 12px;
+        border-radius: 8px;
+        box-shadow: none !important;
+        .MuiCardMedia-root{
+            height: 300px !important;
+        }
+        .MuiCardContent-root{
+            padding: 24px 0px 0px  !important;
+        }
+    }
+}
 .programs-header-title{
     font-family: $font-family;
     font-size: 24px;
@@ -245,6 +259,9 @@ color: #55565A !important;
 .p-t-84 {
     padding-top: 84px !important;
 }
+.ourleader-p-t-40{
+    padding-top: 40px !important;
+}
 
 .section-header-title {
     font-family: $font-family;
@@ -295,6 +312,11 @@ color: #55565A !important;
 }
 .p-carousel .p-carousel-content .p-carousel-prev, .p-carousel .p-carousel-content .p-carousel-next{
     margin: 0px !important;
+}
+.ourleaders-carousal{
+    .p-carousel .p-carousel-content .p-carousel-prev, .p-carousel .p-carousel-content .p-carousel-next{
+        display: none !important;
+    }
 }
 // Mobile Responsive
 @media screen and (max-device-width: 640px) {
@@ -386,7 +408,10 @@ color: #55565A !important;
                     padding-top: 6px !important;
                 }
                 .p-t-84{
-                    padding-top: 48px !important;
+                    padding-top: 38px !important;
+                }
+                .ourleader-p-t-40{
+                    padding-top: 24px !important;
                 }
                 .sectiontwo-description{
                     font-size: 16px !important;
@@ -397,12 +422,21 @@ color: #55565A !important;
                 }
                 .programs-body-grid{
                     .MuiPaper-elevation{
-                        max-width: fit-content;
                         margin: 12px;
                         margin-left: 0px !important;
                         border-radius: 8px;
                         .MuiCardMedia-root{
                             height: 200px !important;
+                        }
+                    }
+                }
+                .ourleader-section{
+                    .MuiPaper-elevation{
+                        margin: 12px;
+                        margin-left: 0px !important;
+                        border-radius: 8px;
+                        .MuiCardMedia-root{
+                            height: 300px !important;
                         }
                     }
                 }
