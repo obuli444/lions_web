@@ -231,7 +231,7 @@ color: #55565A !important;
     overflow: hidden;
 }
 .carousel-caption{
-    bottom: 12rem;
+    bottom: 14rem;
 }
 .carousel-caption > h3{
     font-weight: bold;
@@ -260,7 +260,7 @@ color: #55565A !important;
     padding-top: 84px !important;
 }
 .ourleader-p-t-40{
-    padding-top: 40px !important;
+    padding-top: 60px !important;
 }
 
 .section-header-title {
@@ -318,6 +318,12 @@ color: #55565A !important;
         display: none !important;
     }
 }
+.carousel-control-next-icon{
+    background-image: url('./assets/homecarousal-right.png');
+}
+.carousel-control-prev-icon{
+    background-image: url('./assets/homecarousal-left.png');
+}
 // Mobile Responsive
 @media screen and (max-device-width: 640px) {
     .bg-light{
@@ -374,7 +380,8 @@ color: #55565A !important;
                     height: 500px;
                 }
                 .carousel-caption{
-                    bottom: 7rem;
+                    bottom: 8rem;
+                    text-align: left;
                 }
                 .carousel-caption > h3{
                     font-weight: bold;
