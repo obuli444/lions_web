@@ -1,6 +1,8 @@
 import React from "react";
 import { useFetchCollection } from "./getfirebasedata";
 import Grid from "@mui/material/Grid";
+import Box from '@mui/material/Box';
+
 import ProgramsCards from "../components/programscards";
 export default function ProgramandInitiatives() {
   const { fbdbdata: programsdata } = useFetchCollection(
@@ -8,6 +10,13 @@ export default function ProgramandInitiatives() {
   );
   return (
     <React.Fragment>
+      <Box sx={{ flexGrow: 1 }} className="ourleader-p-t-40 p-l-84">
+        <Grid container spacing={2}>
+          <Grid item xs={12}>
+            <p className="section-header-title ">Programs and Initiatives</p>
+          </Grid>
+        </Grid>
+      </Box>
       <Grid
         container
         spacing={{ xs: 2, md: 3 }}

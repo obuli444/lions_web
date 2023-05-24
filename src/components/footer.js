@@ -5,63 +5,17 @@ import { useFetchCollection } from "./getfirebasedata";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
-import playstore from '../assets/playstore.png';
-import  appstore from '../assets/appstore.png';
+import playstore from "../assets/playstore.png";
+import appstore from "../assets/appstore.png";
+import FooterSectionone from "./footersectionone";
 export default function Footer() {
-  const { fbdbdata: footersectionone } =
-    useFetchCollection("footeradsectionone");
   const { fbdbdata: footersectiontwo } =
     useFetchCollection("footeradsectiontwo");
   const { fbdbdata: footerlogo } = useFetchCollection("footerlogo");
   return (
     <React.Fragment>
       {/* Sectionone ad with donate content */}
-      <Box sx={{ flexGrow: 1 }} className="footer-sectionone">
-        <Grid container spacing={2}>
-          <Grid item xs={12} sm={12} md={6} className="p-a-0">
-            {footersectionone !== null && (
-              <img
-                className="footer-sectionone-img"
-                src={footersectionone[0].adimage}
-                alt={"footerimage"}
-              />
-            )}
-          </Grid>
-          <Grid
-            item
-            xs={12}
-            sm={12}
-            md={6}
-            className="footer-sectionone-text p-a-0"
-          >
-            <p className="footer-one-title">
-              {" "}
-              {footersectionone !== null && footersectionone[0].title}
-            </p>
-            <p className="footer-one-subtitle">
-              {" "}
-              {footersectionone !== null && footersectionone[0].subtitle}
-            </p>
-            <p
-              className="footer-donate-btn"
-              style={{
-                background: `${
-                  footersectionone !== null
-                    ? footersectionone[0].btncolor
-                    : "#FACA0E"
-                }`,
-                border: `1px solid ${
-                  footersectionone !== null
-                    ? footersectionone[0].btncolor
-                    : "#FACA0E"
-                }`,
-              }}
-            >
-              {"Donate"}
-            </p>
-          </Grid>
-        </Grid>
-      </Box>
+      <FooterSectionone />
       <Box sx={{ flexGrow: 1 }}>
         <Grid container spacing={2} className="footer-grid">
           <Grid item xs={12} sm={12} md={12}>
@@ -247,17 +201,17 @@ export default function Footer() {
         </Grid>
       </Box>
       <Box sx={{ flexGrow: 1 }} className="footer-sectionthree">
-        <Grid container spacing={2} >
-          <Grid item xs={12} sm={12} md={12} >
-          <Container fluid className="footer-divider">
+        <Grid container spacing={2}>
+          <Grid item xs={12} sm={12} md={12}>
+            <Container fluid className="footer-divider">
               <Row>
                 <Col className="p-a-0" xs={12} md={12} sm={12}>
                   <p className="footer-grid-links  footer-copyrights m-a-0 text-center">
-                  © 2023 Coimbatore Lions Club. All rights reserved.
+                    © 2023 Coimbatore Lions Club. All rights reserved.
                   </p>
                 </Col>
-                </Row>
-                </Container>
+              </Row>
+            </Container>
           </Grid>
         </Grid>
       </Box>

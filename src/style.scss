@@ -15,7 +15,10 @@ $secondary-color: #2E5D88;
 
 // Icons file import line
 
-
+.App{
+    text-align: unset;
+    overflow-x: hidden;
+}
 .nav-link {
     color: $white;
     font-family: $font-family !important;
@@ -154,6 +157,10 @@ $secondary-color: #2E5D88;
     margin-top: 12px !important;
     display: flex;
     margin-left: 0px !important;
+    padding: 0px 74px 84px;
+}
+.p-l-84{
+    padding-left: 84px !important;
 }
 
 .programs-body-grid {
@@ -611,6 +618,10 @@ border-top: 1px solid $primary-bg;
 
     .programs-header-grid {
         margin-top: 0px !important;
+        padding: 16px 16px 24px;
+    }
+    .p-l-84{
+        padding-left: 16px !important;
     }
 
     .programs-body-grid {

@@ -71,9 +71,9 @@ export default function Header() {
             <div className="divider-line mobile-divider"></div>
             <Offcanvas.Body>
               <Nav className="justify-content-end flex-grow-1 pe-3">
-                <Nav.Link href="#action1">Activities</Nav.Link>
-                <Nav.Link href="#action2">Programs & Initiatives</Nav.Link>
-                <Nav.Link href="#action3">Resources</Nav.Link>
+                <Nav.Link href="/">Activities</Nav.Link>
+                <Nav.Link href="/programsandinitiatives">Programs & Initiatives</Nav.Link>
+                <Nav.Link href="/">Resources</Nav.Link>
                 <NavDropdown
                   title="Our district"
                   id={`offcanvasNavbarDropdown-expand-${""}`}
