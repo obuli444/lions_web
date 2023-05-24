@@ -246,13 +246,14 @@ export default function Footer() {
           </Grid>
         </Grid>
       </Box>
-      <Box sx={{ flexGrow: 1 }} className="footer-sectionone footer-sectiontwo">
-        <Grid container spacing={2}>
-          <Grid item xs={12} sm={12} md={2}>
-          <Container fluid>
+      <Box sx={{ flexGrow: 1 }} className="footer-sectionthree">
+        <Grid container spacing={2} >
+          <Grid item xs={12} sm={12} md={12} >
+          <Container fluid className="footer-divider">
               <Row>
                 <Col className="p-a-0" xs={12} md={12} sm={12}>
-                  <p>
+                  <p className="footer-grid-links  footer-copyrights m-a-0 text-center">
+                  © 2023 Coimbatore Lions Club. All rights reserved.
                   </p>
                 </Col>
                 </Row>

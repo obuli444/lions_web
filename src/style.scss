@@ -445,6 +445,11 @@ $secondary-color: #2E5D88;
 .footer-sectiontwo{
     padding: 56px 84px !important;
 }
+.footer-sectionthree{
+    padding: 56px 84px !important;
+    background: $primary-color;
+
+}
 a{
     text-decoration: none !important;
 }
@@ -476,6 +481,12 @@ color: $white;
 }
 .m-a-0{
     margin: 0px !important;
+}
+.footer-copyrights{
+    padding-top: 48px !important;
+}
+.footer-divider{
+border-top: 1px solid $primary-bg;
 }
 // Mobile Responsive
 @media screen and (max-device-width: 640px) {
@@ -637,10 +648,16 @@ color: $white;
         padding-top: 12px !important;
     }
 
-    .footer-sectionone {
-        padding: 48px 16px 30px !important;
-    }
-
+        .footer-sectionone {
+            padding: 48px 16px 30px !important;
+        }
+    
+        .footer-sectionthree{
+            padding: 0px 16px 48px !important;
+        }
+        .footer-copyrights{
+            padding-top: 24px !important;
+        }
     .footer-sectionone-img {
         width: 100%;
         margin-left: 16px;
