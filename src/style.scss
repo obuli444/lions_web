@@ -224,7 +224,7 @@ $secondary-color: #2E5D88;
     font-weight: 400 !important;
     font-size: 18px !important;
     line-height: 21px !important;
-    color: #55565A !important;
+    color: $primary-font-color !important;
 }
 
 .programs-first-btn {
@@ -486,6 +486,9 @@ color: $white;
 .p-b-16{
     padding-bottom: 16px !important;
 }
+.p-b-40{
+    padding-bottom: 40px !important;
+}
 .m-a-0{
     margin: 0px !important;
 }
@@ -494,6 +497,58 @@ color: $white;
 }
 .footer-divider{
 border-top: 1px solid $primary-bg;
+}
+.resources-section{
+    padding-top: 24px;
+}
+.resoures-title-p{
+    font-family: $font-family;
+    font-weight: 500;
+    font-size: 20px;
+    line-height: 24px;
+    color: rgba(0, 0, 0, 0.87);
+    margin-bottom: 16px;
+}
+.resources-grid{
+    background: rgba(16, 63, 106, 0.04);
+    border-radius: 8px;
+    padding: 18px 16px;
+    align-items: center;
+    cursor: pointer;
+    a{
+        text-decoration: none;
+        color: $primary-color !important;
+        &:hover{
+            color: $primary-color;
+        }
+    }
+}
+.resources-district-title{
+    font-family: $font-family;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 16px;
+    color: $primary-color !important;
+    margin: 0px;
+}
+.p-r-84{
+padding-right: 84px;
+}
+.material-symbols-outlined{
+    vertical-align: middle !important;
+    color: $primary-color;
+}
+.mobile-description-p {
+    p , ul>li {
+        font-style: normal;
+        font-weight: 400;
+        font-size: 20px;
+        line-height: 30px;
+        color: $primary-font-color;
+        font-family: $font-family;
+    }
+
 }
 // Mobile Responsive
 @media screen and (max-device-width: 640px) {
@@ -586,7 +641,9 @@ border-top: 1px solid $primary-bg;
     .section-header-title {
         font-size: 18px;
     }
-
+    .resoures-title-p{
+        font-size: 16px;
+    }
     .learnmore {
         font-size: 14px;
     }
@@ -698,5 +755,14 @@ border-top: 1px solid $primary-bg;
     }
     .footer-donate-btn{
         padding: 12px 24px !important;
+    }
+    .p-r-84{
+        padding-right: 16px !important;
+    }
+    .mobile-description-p {
+        p , ul>li {
+            font-size: 16px;
+        }
+    
     }
 }

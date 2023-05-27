@@ -73,7 +73,7 @@ export default function Header() {
               <Nav className="justify-content-end flex-grow-1 pe-3">
                 <Nav.Link href="/">Activities</Nav.Link>
                 <Nav.Link href="/programsandinitiatives">Programs & Initiatives</Nav.Link>
-                <Nav.Link href="/">Resources</Nav.Link>
+                <Nav.Link href="/resorces">Resources</Nav.Link>
                 <NavDropdown
                   title="Our district"
                   id={`offcanvasNavbarDropdown-expand-${""}`}
