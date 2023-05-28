@@ -57,6 +57,7 @@ export default function Ourmentor() {
                         <img
                           src={logodetails[0].internationallogo}
                           alt={"internationallogo"}
+                          className="w-100"
                         />
                       )}
                     </td>
