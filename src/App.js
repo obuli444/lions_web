@@ -11,6 +11,7 @@ import Resorces from "./components/resources";
 import { Routes, Route } from "react-router-dom";
 import Ourmentor from "./components/ourdistrict/ourmentor";
 import Governorsteam from "./components/ourdistrict/governorsteam";
+import Cabinetofficials from './components/ourdistrict/cabinetofficials';
 
 function App() {
   return (
@@ -27,6 +28,7 @@ function App() {
           <Route exact path="/resorces" element={<Resorces />} />
           <Route exact path="/Ourmentor" element={<Ourmentor />} />
           <Route exact path="/Governorsteam" element={<Governorsteam />} />
+          <Route exact path="/Cabinetofficials" element={<Cabinetofficials />} />
         </Routes>
 
         <Footer />

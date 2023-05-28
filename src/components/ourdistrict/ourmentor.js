@@ -52,7 +52,7 @@ export default function Ourmentor() {
               <Grid item xs={12} md={12} sm={12}>
                 <table>
                   <tr>
-                    <td rowspan="3">
+                    <td rowSpan="3">
                       {ourdistrictlogo !== null && (
                         <img
                           src={ourdistrictlogo[0].internationallogo}
