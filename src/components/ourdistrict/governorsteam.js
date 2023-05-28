@@ -53,7 +53,7 @@ export default function Governorsteam() {
               <Grid item xs={12} md={12} sm={12}>
                 <table>
                   <tr>
-                    <td rowspan="3">
+                    <td rowSpan="3">
                       {ourdistrictlogo !== null && (
                         <img
                           src={ourdistrictlogo[0].internationallogo}
@@ -72,16 +72,14 @@ export default function Governorsteam() {
                   <tr>
                     <td className="p-l-24">
                       <p className="m-a-0 ourdistrict-main-p main-p-color">
-                        {ourdistrictourmentor !== null &&
-                         "R. Mohankumar"}
+                        {"R. Mohankumar"}
                       </p>
                     </td>
                   </tr>
                   <tr>
                     <td className="p-l-24">
                       <p className="m-a-0 designation-p">
-                        {ourdistrictourmentor !== null &&
-                          "District Governor"}
+                        {"District Governor"}
                       </p>
                     </td>
                   </tr>
@@ -129,14 +127,14 @@ export default function Governorsteam() {
         </Grid>
       </Box>
       {/* Section two */}
-      <Box sx={{ flexGrow: 1 }} className="p-a-0 details-info-sectiontwo m-t-05">
-        <Grid container spacing={2} className="p-a-84">
+      <Box sx={{ flexGrow: 1 }} className="p-a-0 details-info-sectiontwo">
+        <Grid container spacing={2} className="p-a-84 m-t-05">
         <Grid item xs={12} md={6} sm={12}>
             <Grid container spacing={2} className="">
               <Grid item xs={12} md={12} sm={12}>
                 <table>
                   <tr>
-                    <td rowspan="3">
+                    <td rowSpan="3">
                       {ourdistrictlogo !== null && (
                         <img
                           src={ourdistrictlogo[0].internationallogo}
@@ -155,16 +153,15 @@ export default function Governorsteam() {
                   <tr>
                     <td className="p-l-24">
                       <p className="m-a-0 ourdistrict-main-p main-p-color">
-                        {ourdistrictourmentor !== null &&
-                         "P. JOHN PETER"}
+                        {"P. JOHN PETER"
+                         }
                       </p>
                     </td>
                   </tr>
                   <tr>
                     <td className="p-l-24">
                       <p className="m-a-0 designation-p">
-                        {ourdistrictourmentor !== null &&
-                          "Past District Governor"}
+                        {"Past District Governor"}
                       </p>
                     </td>
                   </tr>
@@ -207,7 +204,7 @@ export default function Governorsteam() {
               <Grid item xs={12} md={12} sm={12}>
                 <table>
                   <tr>
-                    <td rowspan="3">
+                    <td rowSpan="3">
                       {ourdistrictlogo !== null && (
                         <img
                           src={ourdistrictlogo[0].internationallogo}
@@ -226,16 +223,15 @@ export default function Governorsteam() {
                   <tr>
                     <td className="p-l-24">
                       <p className="m-a-0 ourdistrict-main-p main-p-color">
-                        {ourdistrictourmentor !== null &&
-                         "Shanmuga sundaram"}
+                        {"Shanmuga sundaram"
+                         }
                       </p>
                     </td>
                   </tr>
                   <tr>
                     <td className="p-l-24">
                       <p className="m-a-0 designation-p">
-                        {ourdistrictourmentor !== null &&
-                          "First Vice District Governor"}
+                        {"First Vice District Governor" }
                       </p>
                     </td>
                   </tr>
