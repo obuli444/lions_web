@@ -9,6 +9,7 @@ import "primereact/resources/primereact.min.css";
 import ProgramandInitiatives from './components/programandinitiativespage';
 import Resorces from './components/resources';
 import { Routes, Route } from "react-router-dom";
+import Ourmentor from './components/ourdistrict/ourmentor';
 
 function App() {
   return (
@@ -19,7 +20,8 @@ function App() {
           <Route exact path="/" element={<Homepage />} />
           <Route exact path="/programsandinitiatives" element={<ProgramandInitiatives />} />
           <Route exact path="/resorces" element={<Resorces/>}/>
-        </Routes>
+          <Route exact path="/Ourmentor" element={<Ourmentor/>}/>
+                  </Routes>
         <Footer />
       </div>
     </React.Fragment>
