@@ -4,6 +4,7 @@ import Ourmissionsection from '../components/ourmissionsection';
 import HomeOurleader from '../components/ourleaders';
 import HomeProgramssection from '../components/homeprogramsection';
 import Homecomtributors from '../components/communitycontributors';
+// import Hometwittersection from '../components/hometwittersection';
 export default function Homepage() {
   return <React.Fragment>
     <div className="routing-content">
@@ -13,6 +14,7 @@ export default function Homepage() {
     <HomeOurleader/>
     <HomeProgramssection/>
     <Homecomtributors/>
+    {/* <Hometwittersection/> */}
     </div>
     </div>
     

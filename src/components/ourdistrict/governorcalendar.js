@@ -9,7 +9,7 @@ export default function Governorcalendar() {
   return (
     <React.Fragment>
       <Box sx={{ flexGrow: 1 }} className="p-a-0">
-        <Grid container spacing={2} className="p-a-84">
+        <Grid container spacing={0} className="p-a-84">
           <Grid item xs={12} md={12} sm={12}>
           {
                   <iframe

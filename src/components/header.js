@@ -27,7 +27,7 @@ export default function Header() {
     },
     {
       title: "Intl. President team",
-      path: "/IntlPresident team",
+      path: "/IntlPresidentteam",
     },
     {
       title: "About us",
