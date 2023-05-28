@@ -6,10 +6,11 @@ import Footer from "./components/footer";
 import "./style.scss";
 import "primereact/resources/themes/lara-light-indigo/theme.css";
 import "primereact/resources/primereact.min.css";
-import ProgramandInitiatives from './components/programandinitiativespage';
-import Resorces from './components/resources';
+import ProgramandInitiatives from "./components/programandinitiativespage";
+import Resorces from "./components/resources";
 import { Routes, Route } from "react-router-dom";
-import Ourmentor from './components/ourdistrict/ourmentor';
+import Ourmentor from "./components/ourdistrict/ourmentor";
+import Governorsteam from "./components/ourdistrict/governorsteam";
 
 function App() {
   return (
@@ -18,10 +19,16 @@ function App() {
         <Header />
         <Routes>
           <Route exact path="/" element={<Homepage />} />
-          <Route exact path="/programsandinitiatives" element={<ProgramandInitiatives />} />
-          <Route exact path="/resorces" element={<Resorces/>}/>
-          <Route exact path="/Ourmentor" element={<Ourmentor/>}/>
-                  </Routes>
+          <Route
+            exact
+            path="/programsandinitiatives"
+            element={<ProgramandInitiatives />}
+          />
+          <Route exact path="/resorces" element={<Resorces />} />
+          <Route exact path="/Ourmentor" element={<Ourmentor />} />
+          <Route exact path="/Governorsteam" element={<Governorsteam />} />
+        </Routes>
+
         <Footer />
       </div>
     </React.Fragment>

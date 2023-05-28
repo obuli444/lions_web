@@ -581,6 +581,16 @@ color: $primary-color !important;
 .deatils-info-ourmentor{
     background: #EBF1F7;
 }
+.details-info-sectiontwo{
+    background: rgba(235, 183, 0, 0.08);
+}
+.m-t-05{
+    margin-top: 0.5px !important
+}
+.details-info-sectionthree{
+    background: rgba(241, 93, 60, 0.08);
+
+}
 .p-a-84{
     padding: 84px;
 }
@@ -818,7 +828,6 @@ color: $primary-color !important;
     }
     .ourdistrict-subtitle,.ourdistrict-main-p{
         font-size: unset !important;
-        padding-right: 0px !important;
         line-height: normal;
     }
     .p-a-84{
