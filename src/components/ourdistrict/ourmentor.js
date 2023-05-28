@@ -8,7 +8,7 @@ export default function Ourmentor() {
   const { fbdbdata: ourdistrictourmentor } = useFetchCollection(
     "ourdistrict-ourmentor"
   );
-  const { fbdbdata: logodetails } = useFetchCollection("logodetails");
+  const { fbdbdata: ourdistrictlogo } = useFetchCollection("ourdistrictlogo");
 
   return (
     <React.Fragment>
@@ -53,9 +53,9 @@ export default function Ourmentor() {
                 <table>
                   <tr>
                     <td rowspan="3">
-                      {logodetails !== null && (
+                      {ourdistrictlogo !== null && (
                         <img
-                          src={logodetails[0].internationallogo}
+                          src={ourdistrictlogo[0].internationallogo}
                           alt={"internationallogo"}
                           className="w-100"
                         />

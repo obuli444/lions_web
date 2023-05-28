@@ -1,11 +1,10 @@
-import React, { useState } from "react";
+import React from "react";
 import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
 import sectionthreedivider from './../assets/sectionthreedivider.png';
 import { useFetchCollection } from "./getfirebasedata";
 import { Carousel } from "primereact/carousel";
 import Card from "@mui/material/Card";
-import CardActions from "@mui/material/CardActions";
 import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
 import Typography from "@mui/material/Typography";
@@ -16,7 +15,10 @@ export default function HomeOurleader(){
   const { fbdbdata: ourmissionsectiontitle } = useFetchCollection(
     "ourmissionsectiontitle"
   );
-  console.log("ourleaderssection",ourleaderssection); 
+  const { fbdbdata: activitiessection } = useFetchCollection(
+    "activitiessection"
+  );
+  console.log("ourleaderssection",activitiessection); 
   const responsiveOptions = [
     {
       breakpoint: "1199px",
