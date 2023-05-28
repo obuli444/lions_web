@@ -31,7 +31,7 @@ export default function Header() {
     },
     {
       title: "About us",
-      path: "Aboutus",
+      path: "aboutus",
     },
     {
       title: "Contact us",

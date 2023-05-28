@@ -14,6 +14,7 @@ import Governorsteam from "./components/ourdistrict/governorsteam";
 import Cabinetofficials from './components/ourdistrict/cabinetofficials';
 import Governorcalendar from './components/ourdistrict/governorcalendar';
 import Internationpresidentteam from './components/ourdistrict/Internationalpresidentteam';
+import Aboutus from './components/ourdistrict/aboutus';
 function App() {
   return (
     <React.Fragment>
@@ -32,6 +33,8 @@ function App() {
           <Route exact path="/Cabinetofficials" element={<Cabinetofficials />} />
           <Route exact path="/Governorcalendar" element={<Governorcalendar />} />
           <Route exact path="/IntlPresidentteam" element={<Internationpresidentteam />} />
+          <Route exact path="/aboutus" element={<Aboutus />} />
+
         </Routes>
 
         <Footer />
