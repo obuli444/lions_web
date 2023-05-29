@@ -35,7 +35,7 @@ export default function Header() {
     },
     {
       title: "Contact us",
-      path: "Contactus",
+      path: "contactus",
     },
     {
       title: "Find a club",

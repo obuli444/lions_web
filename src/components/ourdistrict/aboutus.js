@@ -6,14 +6,59 @@ import sectiontwodivider from "../../assets/sectiontwodivider.png";
 import { useFetchCollection } from "../getfirebasedata";
 import aboutusimage from "../../assets/aboutusimage.png";
 import sectionfivedivider from "../../assets/sectionfivedivider.png";
-import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
+// import sectionthreedivider from '../../assets/sectionthreedivider.png';
+import Card from "@mui/material/Card";
+// import CardActions from "@mui/material/CardActions";
+import CardContent from "@mui/material/CardContent";
+import CardMedia from "@mui/material/CardMedia";
+import Typography from "@mui/material/Typography";
+// import { Carousel } from "primereact/carousel";
+
 
 export default function Aboutus() {
   const { fbdbdata: aboutusourobjective } = useFetchCollection(
     "aboutus-ourobjective"
   );
+  // const { fbdbdata: Pastdistrictgovernorsdata } = useFetchCollection(
+  //   "aboutus-Pastdistrictgovernors"
+  // );
+  const responsiveOptions = [
+    {
+      breakpoint: "1199px",
+      numVisible: 1,
+      numScroll: 1,
+    },
+    {
+      breakpoint: "991px",
+      numVisible: 2,
+      numScroll: 1,
+    },
+    {
+      breakpoint: "767px",
+      numVisible: 1,
+      numScroll: 1,
+    },
+  ];
+  const pastgovernorsTemplate = (governers) => {
+    const { cardimage, name, timerange } = governers;
+    return (
+      <div>
+        <Card>
+          <CardMedia sx={{ height: 260 }} md={{height: 360}} className="w-100" image={cardimage} title={name} />
+          <CardContent>
+            <Typography gutterBottom variant="h5" component="div">
+              <span className="programs-header-title">{name}</span>
+            </Typography>
+            <Typography variant="body2" className="programs-description-text">
+              {timerange}
+            </Typography>
+          </CardContent>
+        </Card>
+      </div>
+    );
+  };
   return (
     <React.Fragment>
       <CommonHeader
@@ -135,26 +180,7 @@ export default function Aboutus() {
             <p className="section-header-title ">{"Our Objectives"}</p>
           </Grid>
         </Grid>
-        {/* <Grid container className="p-t-40 align-center-sectn" spacing={3}>
-          {aboutusourobjective !== null &&
-            aboutusourobjective.map((ele, index) => {
-              return (
-                <Grid item xs={12} md={4} sm={12}>
-                  <Grid container className="" spacing={2}>
-                    <Grid item>
-                      <img src={ele.iconurl} alt={ele.title} width={"32px"}/>
-                    </Grid>
-                    <Grid item xs={12} md={12} sm={12}>
-                      <p className="programs-header-title">{ele.title}</p>
-                    </Grid>
-                    <Grid item xs={12} md={12} sm={12}>
-                      <p className="aboutus-card-des">{ele.description}</p>
-                    </Grid>
-                  </Grid>
-                </Grid>
-              );
-            })}
-        </Grid> */}
+
         <div className="p-t-40 align-center-sectn m-a-0">
           <Row>
             {aboutusourobjective !== null &&
@@ -162,7 +188,7 @@ export default function Aboutus() {
                 return (
                   <Col className="p-a-0" key={index} xs={12} md={4} sm={12}>
                     <Row className="aboutus-cards">
-                      <Col  md="auto" className="p-a-0">
+                      <Col md="auto" className="p-a-0">
                         {" "}
                         <img src={ele.iconurl} alt={ele.title} width={"60px"} />
                       </Col>
@@ -181,6 +207,41 @@ export default function Aboutus() {
           </Row>
         </div>
       </Box>
+      {/* <Box sx={{ flexGrow: 1 }} className="p-a-84">
+        <Grid container spacing={2}>
+          <Grid item xs={12}>
+            <img
+              src={sectionthreedivider}
+              alt="divider"
+              className="sectionthreedivider"
+            />
+          </Grid>
+        </Grid>
+        <Grid container className="p-t-40 align-center-section" spacing={0}>
+          <Grid item xs={12}>
+            <p className="section-header-title ">{"Past District Governors"}</p>
+          </Grid>
+        </Grid>
+        <Grid container className="p-t-40 align-center-section" spacing={0}>
+          <Grid item xs={12} md={12}>
+            <div className="home-programs-carousal">
+              <Carousel
+                value={
+                  Pastdistrictgovernorsdata !== null
+                    ? Pastdistrictgovernorsdata
+                    : []
+                }
+                numScroll={1}
+                circular
+                autoplayInterval={3000}
+                numVisible={6}
+                responsiveOptions={responsiveOptions}
+                itemTemplate={pastgovernorsTemplate}
+              />
+            </div>
+          </Grid>
+        </Grid>
+      </Box> */}
     </React.Fragment>
   );
 }

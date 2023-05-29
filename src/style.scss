@@ -213,11 +213,42 @@ $secondary-color: #2E5D88;
     font-family: $font-family;
     font-size: 24px;
     font-weight: 600;
-    color: #000000;
+    color: $black;
     white-space: nowrap;
     text-overflow: ellipsis;
 }
+.contact-us-sectionone{
+padding-right: 40px;
+}
+.contactus-sectiontwo {
+    background: #EBF1F7;
+    border-radius: 16px;
+}
+.contactus-title{
+line-height: 47px;
+}
+.mapouter {
+    position: relative;
+    text-align: right;
+    width: 100%;
+    height: 202px;
+}
 
+.gmap_canvas {
+    overflow: hidden;
+    background: none !important;
+    width: 100%;
+    height: 202px;
+    border: 1px solid #EEEEEE;
+border-radius: 16px;
+}
+.location-address{
+    font-weight: 500 !important;
+    padding-left: 16px;
+}
+.gmap_iframe {
+    height: 202px !important;
+}
 .programs-description-text {
     font-family: $font-family !important;
     font-style: normal;
@@ -534,6 +565,14 @@ border-top: 1px solid $primary-bg;
     line-height: 16px;
     color: $primary-color !important;
     margin: 0px;
+}
+.contactus-subtitle {
+    font-style: normal;
+    font-family: $font-family;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 27px;
+    color: $primary-font-color;
 }
 .p-r-84{
 padding-right: 84px !important;
@@ -892,5 +931,21 @@ color: $primary-color !important;
     }
     .aboutus-cards{
         min-height: unset;
+    }
+    .contactus-title{
+        line-height: unset;
+    }
+    .contactus-subtitle{
+        font-size: 16px;
+        line-height: normal;
+    }
+    .our-office{
+        font-size: 16px !important;
+    }
+    .contact-us-sectionone{
+        padding-right: 0px;
+    }
+    .contactus-sectiontwo{
+        margin: 16px 0 16px 16px !important;
     }
 }
