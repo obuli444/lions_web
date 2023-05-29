@@ -242,6 +242,34 @@ line-height: 47px;
     border: 1px solid #EEEEEE;
 border-radius: 16px;
 }
+.error-span {
+    color: #e50102 !important;
+    background: rgba(229, 1, 2, 0.08);
+  }
+  .p-b-16{
+    padding-bottom: 16px !important;
+  }
+  .contactus-sendbtn{
+    padding: 12px 32px;
+    background: $primary-color;
+    border-radius: 56px;
+    border: 0;
+    color: $white;
+  }
+  .alert-primary {
+    background: #FFFFFF !important;
+    box-shadow: 0px 4px 4px rgb(36 149 254 / 4%) !important;
+    border-radius: 12px !important;
+    border: 1px solid white !important;
+    text-align: center;
+    padding: 18px 24px !important;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 21px;
+    color: #58595B !important;
+    font-family: $font-family;
+  }
 .location-address{
     font-weight: 500 !important;
     padding-left: 16px;
@@ -508,6 +536,7 @@ font-size: 14px;
 line-height: 14px;
 color: $white;
 }
+
 .p-t-24{
     padding-top: 24px !important;
 }
@@ -947,5 +976,8 @@ color: $primary-color !important;
     }
     .contactus-sectiontwo{
         margin: 16px 0 16px 16px !important;
+    }
+    .contactus-formsection{
+        padding: 30px !important;
     }
 }
