@@ -61,7 +61,7 @@ export default function HomeProgramssection() {
           </Grid>
           <Grid item xs={4} className="text-right">
             <p className="learnmore">
-              <span>Learn more</span>&nbsp;
+              <span><a href="/programsandinitiatives" className="primary-color">Learn more</a></span>&nbsp;
               <span className="material-symbols-outlined learnmore-icon verticalalign-bottom">
                 east
               </span>

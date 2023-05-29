@@ -39,7 +39,7 @@ export default function Header() {
     },
     {
       title: "Find a club",
-      path: "Findaclub",
+      path: "findaclub",
     },
     {
       title: "Become a member",

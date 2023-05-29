@@ -16,6 +16,8 @@ import Governorcalendar from './components/ourdistrict/governorcalendar';
 import Internationpresidentteam from './components/ourdistrict/Internationalpresidentteam';
 import Aboutus from './components/ourdistrict/aboutus';
 import Contactus from './components/ourdistrict/contactus';
+import ContactsList from './components/adminpanel/contactslist';
+import FindaClub from './components/ourdistrict/findclub';
 function App() {
   return (
     <React.Fragment>
@@ -36,7 +38,8 @@ function App() {
           <Route exact path="/IntlPresidentteam" element={<Internationpresidentteam />} />
           <Route exact path="/aboutus" element={<Aboutus />} />
           <Route exact path="/contactus" element={<Contactus />} />
-
+          <Route exact path="/contactslist" element={<ContactsList />} />
+          <Route exact path="/findaclub" element={<FindaClub />} />
 
         </Routes>
 

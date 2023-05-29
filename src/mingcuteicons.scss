@@ -75,3 +75,8 @@
     vertical-align: bottom;
     padding-right: 12px;
   }
+  .mgc_file_search_line:before {
+    content: "\ec47";
+    color: rgba(2, 10, 18, 0.54);
+    font-size: 20 !important;
+  }
