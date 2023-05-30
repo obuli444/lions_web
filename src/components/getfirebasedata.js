@@ -7,9 +7,7 @@ export const useFetchCollection = (dbcollection) => {
 
   useEffect(() => {
     let collectionRef = collection(db, dbcollection);
-    console.log("snapshot",collectionRef);
     const unsub = onSnapshot(collectionRef, (snapshot) => {
-        console.log("snapshot",snapshot);
       let results = [];
       snapshot.docs.forEach((docs) => {
         results.push({

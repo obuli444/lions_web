@@ -18,6 +18,7 @@ import Aboutus from './components/ourdistrict/aboutus';
 import Contactus from './components/ourdistrict/contactus';
 import ContactsList from './components/adminpanel/contactslist';
 import FindaClub from './components/ourdistrict/findclub';
+import ClubAddandEdit from './components/adminpanel/addclub';
 function App() {
   return (
     <React.Fragment>
@@ -40,6 +41,7 @@ function App() {
           <Route exact path="/contactus" element={<Contactus />} />
           <Route exact path="/contactslist" element={<ContactsList />} />
           <Route exact path="/findaclub" element={<FindaClub />} />
+          <Route exact path="/addclub" element={<ClubAddandEdit />} />
 
         </Routes>
 
