@@ -1,4 +1,4 @@
-import React,{useState} from "react";
+import React, { useState } from "react";
 import { TabView, TabPanel } from "primereact/tabview";
 import Grid from "@mui/material/Grid";
 import Box from "@mui/material/Box";
@@ -6,12 +6,54 @@ import { useForm } from "react-hook-form";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
-import Base64Convertion from '../common-components/imagetobase64';
+import { MultiSelect } from "primereact/multiselect";
+import Base64Convertion from "../common-components/imagetobase64";
 import { db } from "../../firebase/config";
-import { collection,addDoc } from "firebase/firestore";
+import { collection, addDoc } from "firebase/firestore";
+import diabetes from "../../assets/specialties/Diabetes.png";
+import fundraiser from "../../assets/specialties/Fundraiser.png";
+import vision from "../../assets/specialties/Vision.png";
+import hunger from "../../assets/specialties/Hunger.png";
+import environment from "../../assets/specialties/Environment.png";
+import childcancer from "../../assets/specialties/Childcancer.png";
+
 export default function ClubAddandEdit(props) {
-  const [clublogourl , setclubLogo]=useState('');
-  const [certificateurl, setCertificate] = useState('');
+  const [clublogourl, setclubLogo] = useState("");
+  const [certificateurl, setCertificate] = useState("");
+  const [selectedSpecialties, setSelectedSpecialties] = useState(null);
+
+  const specialtieslist = [
+    {
+      name: "Diabetes",
+      code: "diabetes",
+      image: diabetes,
+    },
+    {
+      name: "Fund raiser",
+      code: "fundraiser",
+      image: fundraiser,
+    },
+    {
+      name: "Vision",
+      code: "vision",
+      image: vision,
+    },
+    {
+      name: "Hunger",
+      code: "hunger",
+      image: hunger,
+    },
+    {
+      name: "Environment",
+      code: "environment",
+      image: environment,
+    },
+    {
+      name: "Child cancer",
+      code: "childcancer",
+      image: childcancer,
+    },
+  ];
   const {
     register,
     handleSubmit,
@@ -44,11 +86,16 @@ export default function ClubAddandEdit(props) {
       meetinglocation,
       meetingdate,
       meetingtime,
-      clublogo : clublogourl,
+      clublogo: clublogourl,
       clubcirtificate: certificateurl,
+      specialties: selectedSpecialties,
       status: "Active",
     });
+    reset();
+    setSelectedSpecialties(null);
   }
+
+
   return (
     <React.Fragment>
       <div className="card">
@@ -104,6 +151,31 @@ export default function ClubAddandEdit(props) {
                             {errors.clubdistrict && (
                               <span className="error-span">
                                 Club District is required
+                              </span>
+                            )}
+                          </div>
+                        </Col>
+                      </Row>
+                      <Row className="p-b-16">
+                        <Col className="p-a-0 col-6">
+                          <div className="p-b-8">
+                            <label htmlFor="specialties">Specialties</label>
+                          </div>
+                          <div className="">
+                            <MultiSelect
+                              value={selectedSpecialties}
+                              onChange={(e) => {
+                                setSelectedSpecialties(e.value);
+                              }}
+                              options={specialtieslist}
+                              optionLabel="name"
+                              placeholder="Select Specialties"
+                              maxSelectedLabels={3}
+                              className="w-100"
+                            />
+                            {errors.specialties && (
+                              <span className="error-span">
+                                Specialties On is required
                               </span>
                             )}
                           </div>
@@ -315,20 +387,19 @@ export default function ClubAddandEdit(props) {
                               placeholder="Club logo"
                               accept="image/*"
                               onChange={(e) => {
+                                // const confile = Base64Convertion(e.target.files);
                                 const selectedfile = e.target.files;
                                 if (selectedfile.length > 0) {
                                   const [imageFile] = selectedfile;
                                   const fileReader = new FileReader();
                                   fileReader.onload = () => {
                                     const srcData = fileReader.result;
-                                    // console.log("base64:", srcData);
                                     setclubLogo(srcData);
                                   };
                                   fileReader.readAsDataURL(imageFile);
                                 }
                               }}
                             />
-                            {console.log("clublogourl", clublogourl)}
                             {errors.clublogo && (
                               <span className="error-span">
                                 Club logo is required
@@ -361,7 +432,6 @@ export default function ClubAddandEdit(props) {
                                   const fileReader = new FileReader();
                                   fileReader.onload = () => {
                                     const srcData = fileReader.result;
-                                    // console.log("base64:", srcData);
                                     setCertificate(srcData);
                                   };
                                   fileReader.readAsDataURL(imageFile);

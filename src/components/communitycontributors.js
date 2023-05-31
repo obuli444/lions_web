@@ -50,7 +50,7 @@ export default function Homecomtributors() {
         enableMouseEvents
       >
         {images.map((step, index) => (
-          <div key={step.label}>
+          <div key={step.index}>
             {Math.abs(activeStep - index) <= 2 ? (
               <Box
                 component="img"

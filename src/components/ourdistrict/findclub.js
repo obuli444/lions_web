@@ -12,7 +12,7 @@ export default function FindaClub() {
             <p className="section-header-title ">{"Clubs"}</p>
           </Grid>
           <Grid item xs={10} className="text-right">
-            <span class="material-symbols-outlined">search</span>
+            <span class="material-symbols-outlined club-searchicon  ">search</span>
             <input className="club-input p-l-24" type="text"></input>
           </Grid>
         </Grid>
