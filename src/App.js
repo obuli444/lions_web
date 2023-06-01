@@ -21,10 +21,10 @@ import FindaClub from "./components/ourdistrict/findclub";
 import ClubAddandEdit from "./components/adminpanel/addclub";
 import Clublistpage from "./components/adminpanel/clublistpage";
 import { useLocation } from 'react-router-dom';
+import Managemembers from './components/adminpanel/managemembers';
 
 function App() {
   const location = useLocation();
-  console.log("location",location);
   return (
     <React.Fragment>
       <div className="App">
@@ -61,6 +61,8 @@ function App() {
             <Route exact path="/findaclub" element={<FindaClub />} />
             <Route exact path="/addclub" element={<ClubAddandEdit />} />
             <Route exact path="/clublist" element={<Clublistpage />} />
+            <Route exact path="/managemembers" element={<Managemembers />} />
+
           </Routes>
         </div>
         {location.pathname!=='/becomeamember'&&<Footer />}

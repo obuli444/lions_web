@@ -9,11 +9,13 @@ import { Tag } from "primereact/tag";
 import { Tooltip } from "primereact/tooltip";
 import { Dialog } from "primereact/dialog";
 import ClubAddandEdit from "../adminpanel/addclub";
+import { useNavigate } from "react-router-dom";
 import AppToast from '../common-components/apptoast';
 import { onSnapshot, query, collection, deleteDoc, doc, updateDoc, getDoc } from 'firebase/firestore';
 import { db } from "../../firebase/config";
 
 export default function Clublistpage() {
+  const navigate = useNavigate();
   const { fbdbdata: clubdetails } = useFetchCollection("clubdetails");
   const [globalFilter, setGlobalFilter] = useState(null);
   const [visibleClub, setClubVisible] = useState(false);
@@ -55,7 +57,10 @@ export default function Clublistpage() {
           className={"clubmembers"}
           severity="help"
           data-pr-tooltip="Manage Members"
-          onClick={() => console.log("")}
+          onClick={() => {
+            navigate('/managemembers',{replace : true,state:{data:rowData}});
+
+          }}
         />
       </React.Fragment>
     );
@@ -120,6 +125,7 @@ const DeleteClubDetails=()=>{
  setTimeout(() => {
   setDeleteAlert(false);
 }, 3000);
+setSelectedClub(null);
 
 }
   const clubSpecialties = (rowData) => {
