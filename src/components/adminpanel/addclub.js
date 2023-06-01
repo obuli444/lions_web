@@ -21,7 +21,7 @@ export default function ClubAddandEdit(props) {
   const [clublogourl, setclubLogo] = useState("");
   const [certificateurl, setCertificate] = useState("");
   const [selectedSpecialties, setSelectedSpecialties] = useState(null);
-
+  const [isspecselected,setspecSelect] = useState(false);
   const specialtieslist = [
     {
       name: "Diabetes",
@@ -54,6 +54,15 @@ export default function ClubAddandEdit(props) {
       image: childcancer,
     },
   ];
+
+  const countryTemplate = (option) => {
+    return (
+        <div className="flex align-items-center">
+            <img alt={option.name} src={option.image} className={`mr-2`} style={{ width: '20px' }} />
+            <div>{option.name}</div>
+        </div>
+    );
+};
   const {
     register,
     handleSubmit,
@@ -164,16 +173,17 @@ export default function ClubAddandEdit(props) {
                           <div className="">
                             <MultiSelect
                               value={selectedSpecialties}
-                              onChange={(e) => {
+                              options={specialtieslist}
+                              onChange={(e) =>{
                                 setSelectedSpecialties(e.value);
                               }}
-                              options={specialtieslist}
                               optionLabel="name"
-                              placeholder="Select Specialties"
-                              maxSelectedLabels={3}
+                              placeholder="Select Countries"
+                              itemTemplate={countryTemplate}
                               className="w-100"
+                              display="chip"
                             />
-                            {errors.specialties && (
+                            {isspecselected && (
                               <span className="error-span">
                                 Specialties On is required
                               </span>
