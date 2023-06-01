@@ -16,12 +16,15 @@ import vision from "../../assets/specialties/Vision.png";
 import hunger from "../../assets/specialties/Hunger.png";
 import environment from "../../assets/specialties/Environment.png";
 import childcancer from "../../assets/specialties/Childcancer.png";
+import AppToast from '../common-components/apptoast';
 
 export default function ClubAddandEdit(props) {
   const [clublogourl, setclubLogo] = useState("");
   const [certificateurl, setCertificate] = useState("");
   const [selectedSpecialties, setSelectedSpecialties] = useState(null);
   const [isspecselected,setspecSelect] = useState(false);
+  const [showAlert, setAlert] = useState(false);
+
   const specialtieslist = [
     {
       name: "Diabetes",
@@ -100,6 +103,7 @@ export default function ClubAddandEdit(props) {
       specialties: selectedSpecialties,
       status: "Active",
     });
+    setAlert(true);
     reset();
     setSelectedSpecialties(null);
   }
@@ -107,6 +111,8 @@ export default function ClubAddandEdit(props) {
 
   return (
     <React.Fragment>
+            {showAlert&&  
+     <AppToast showAleart={showAlert} icon="mgc_check_circle_fill" message={`Club Added Successfully`} />}
       <div className="card">
         <TabView>
           <TabPanel header="Club Details">

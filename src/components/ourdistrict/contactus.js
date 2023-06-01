@@ -25,9 +25,7 @@ export default function Contactus() {
     data['createdt']=new Date();
     const {fullname,email,mobileno,message,createdt} = data;
     let collectionRef = collection(db, 'contactusdetails');
-    console.log("collectionRef",collectionRef)
     setAlert(true);
-    console.log(data);
     await addDoc(collectionRef, {
       fullname,
       email,
