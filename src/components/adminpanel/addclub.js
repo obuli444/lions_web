@@ -105,6 +105,9 @@ export default function ClubAddandEdit(props) {
     });
     setAlert(true);
     reset();
+    setTimeout(() => {
+      setAlert(false);
+    }, 3000);
     setSelectedSpecialties(null);
     props.closePanel(false);
 
@@ -285,11 +288,11 @@ export default function ClubAddandEdit(props) {
                                 required: false,
                               })}
                               id="extnchairpersion"
-                              placeholder="Club Sponsered"
+                              placeholder="Extn.ChairPersion"
                             />
                             {errors.extnchairpersion && (
                               <span className="error-span">
-                                Club Sponsered is required
+                                 Extn.ChairPersion is required
                               </span>
                             )}
                           </div>

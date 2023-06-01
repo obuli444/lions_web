@@ -330,6 +330,15 @@ border-radius: 16px;
 .primary-color{
     color:$primary-color !important;
 }
+.float-right{
+    float: right;
+}
+.float-left{
+    float: left !important;
+}
+.managemembe-empty{
+    padding: 0 24px 24px;
+}
 .club-input{
     background: $white;
     border: 1px solid $primary-bg;
@@ -388,6 +397,10 @@ border-radius: 16px;
 
 .p-l-16 {
     padding-left: 16px !important;
+}
+.p-l-12{
+    padding-left: 12px !important;
+  
 }
 
 .p-l-24 {

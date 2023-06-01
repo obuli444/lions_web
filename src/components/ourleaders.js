@@ -18,7 +18,6 @@ export default function HomeOurleader(){
   const { fbdbdata: activitiessection } = useFetchCollection(
     "activitiessection"
   );
-  console.log("ourleaderssection",activitiessection); 
   const responsiveOptions = [
     {
       breakpoint: "1199px",

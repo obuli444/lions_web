@@ -13,7 +13,6 @@ export default function HomeProgramssection() {
   const { fbdbdata: programstitle } = useFetchCollection(
     "programssectiontitle"
   );
-  console.log("programstitle",programstitle);
   const responsiveOptions = [
     {
       breakpoint: "1199px",
