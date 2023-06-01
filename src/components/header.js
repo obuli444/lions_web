@@ -43,7 +43,7 @@ export default function Header() {
     },
     {
       title: "Become a member",
-      path: "Becomeamember",
+      path: "becomeamember",
     },
   ];
   return (

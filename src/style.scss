@@ -114,7 +114,15 @@ $secondary-color: #2E5D88;
     margin: 6px 16px 24px;
     cursor: pointer;
 }
-
+.m-r-12{
+    margin-right: 12px !important;
+}
+.m-r-16{
+    margin-right: 16px !important;
+}
+.align-items-center {
+    align-items: center !important;
+}
 .web-login-btn {
     padding: 12px 16px;
     background: $secondary-color;

@@ -11,41 +11,60 @@ import Resorces from "./components/resources";
 import { Routes, Route } from "react-router-dom";
 import Ourmentor from "./components/ourdistrict/ourmentor";
 import Governorsteam from "./components/ourdistrict/governorsteam";
-import Cabinetofficials from './components/ourdistrict/cabinetofficials';
-import Governorcalendar from './components/ourdistrict/governorcalendar';
-import Internationpresidentteam from './components/ourdistrict/Internationalpresidentteam';
-import Aboutus from './components/ourdistrict/aboutus';
-import Contactus from './components/ourdistrict/contactus';
-import ContactsList from './components/adminpanel/contactslist';
-import FindaClub from './components/ourdistrict/findclub';
-import ClubAddandEdit from './components/adminpanel/addclub';
+import Cabinetofficials from "./components/ourdistrict/cabinetofficials";
+import Governorcalendar from "./components/ourdistrict/governorcalendar";
+import Internationpresidentteam from "./components/ourdistrict/Internationalpresidentteam";
+import Aboutus from "./components/ourdistrict/aboutus";
+import Contactus from "./components/ourdistrict/contactus";
+import ContactsList from "./components/adminpanel/contactslist";
+import FindaClub from "./components/ourdistrict/findclub";
+import ClubAddandEdit from "./components/adminpanel/addclub";
+import Clublistpage from "./components/adminpanel/clublistpage";
+import { useLocation } from 'react-router-dom';
+
 function App() {
+  const location = useLocation();
+  console.log("location",location);
   return (
     <React.Fragment>
       <div className="App">
         <Header />
-        <Routes>
-          <Route exact path="/" element={<Homepage />} />
-          <Route
-            exact
-            path="/programsandinitiatives"
-            element={<ProgramandInitiatives />}
-          />
-          <Route exact path="/resorces" element={<Resorces />} />
-          <Route exact path="/Ourmentor" element={<Ourmentor />} />
-          <Route exact path="/Governorsteam" element={<Governorsteam />} />
-          <Route exact path="/Cabinetofficials" element={<Cabinetofficials />} />
-          <Route exact path="/Governorcalendar" element={<Governorcalendar />} />
-          <Route exact path="/IntlPresidentteam" element={<Internationpresidentteam />} />
-          <Route exact path="/aboutus" element={<Aboutus />} />
-          <Route exact path="/contactus" element={<Contactus />} />
-          <Route exact path="/contactslist" element={<ContactsList />} />
-          <Route exact path="/findaclub" element={<FindaClub />} />
-          <Route exact path="/addclub" element={<ClubAddandEdit />} />
-
-        </Routes>
-
-        <Footer />
+        <div className="routing-content">
+          <Routes>
+            <Route exact path="/" element={<Homepage />} />
+            <Route
+              exact
+              path="/programsandinitiatives"
+              element={<ProgramandInitiatives />}
+            />
+            <Route exact path="/resorces" element={<Resorces />} />
+            <Route exact path="/Ourmentor" element={<Ourmentor />} />
+            <Route exact path="/Governorsteam" element={<Governorsteam />} />
+            <Route
+              exact
+              path="/Cabinetofficials"
+              element={<Cabinetofficials />}
+            />
+            <Route
+              exact
+              path="/Governorcalendar"
+              element={<Governorcalendar />}
+            />
+            <Route
+              exact
+              path="/IntlPresidentteam"
+              element={<Internationpresidentteam />}
+            />
+            <Route exact path="/aboutus" element={<Aboutus />} />
+            <Route exact path="/contactus" element={<Contactus />} />
+            <Route exact path="/contactslist" element={<ContactsList />} />
+            <Route exact path="/findaclub" element={<FindaClub />} />
+            <Route exact path="/addclub" element={<ClubAddandEdit />} />
+            <Route exact path="/clublist" element={<Clublistpage />} />
+          </Routes>
+        </div>
+        {location.pathname!=='/becomeamember'&&<Footer />}
+       
       </div>
     </React.Fragment>
   );
