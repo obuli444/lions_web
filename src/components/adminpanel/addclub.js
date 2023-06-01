@@ -106,6 +106,8 @@ export default function ClubAddandEdit(props) {
     setAlert(true);
     reset();
     setSelectedSpecialties(null);
+    props.closePanel(false);
+
   }
 
 
@@ -115,7 +117,7 @@ export default function ClubAddandEdit(props) {
      <AppToast showAleart={showAlert} icon="mgc_check_circle_fill" message={`Club Added Successfully`} />}
       <div className="card">
         <TabView>
-          <TabPanel header="Club Details">
+          <TabPanel header="Club Details" className="p-a-0">
             <Box sx={{ flexGrow: 1 }} className="">
               <Grid container spacing={0}>
                 <Grid item xs={12} md={12}>
@@ -126,7 +128,7 @@ export default function ClubAddandEdit(props) {
                       id="clubform"
                     >
                       <Row className="p-b-16">
-                        <Col className="p-a-0 col-6">
+                        <Col className="p-a-0 col-12">
                           <div className="p-b-8">
                             <label htmlFor="clubname">Club name</label>
                           </div>
@@ -149,7 +151,7 @@ export default function ClubAddandEdit(props) {
                         </Col>
                       </Row>
                       <Row className="p-b-16">
-                        <Col className="p-a-0 col-6">
+                        <Col className="p-a-0 col-12">
                           <div className="p-b-8">
                             <label htmlFor="clubdistrict">Club District</label>
                           </div>
@@ -172,7 +174,7 @@ export default function ClubAddandEdit(props) {
                         </Col>
                       </Row>
                       <Row className="p-b-16">
-                        <Col className="p-a-0 col-6">
+                        <Col className="p-a-0 col-12">
                           <div className="p-b-8">
                             <label htmlFor="specialties">Specialties</label>
                           </div>
@@ -198,7 +200,7 @@ export default function ClubAddandEdit(props) {
                         </Col>
                       </Row>
                       <Row className="p-b-16">
-                        <Col className="p-a-0 col-6">
+                        <Col className="p-a-0 col-12">
                           <div className="p-b-8">
                             <label htmlFor="chartedon">Charted On</label>
                           </div>
@@ -221,7 +223,7 @@ export default function ClubAddandEdit(props) {
                         </Col>
                       </Row>
                       <Row className="p-b-16">
-                        <Col className="p-a-0 col-6">
+                        <Col className="p-a-0 col-12">
                           <div className="p-b-8">
                             <label htmlFor="clubno">Club No</label>
                           </div>
@@ -244,7 +246,7 @@ export default function ClubAddandEdit(props) {
                         </Col>
                       </Row>
                       <Row className="p-b-16">
-                        <Col className="p-a-0 col-6">
+                        <Col className="p-a-0 col-12">
                           <div className="p-b-8">
                             <label htmlFor="clubsponsered">
                               Club Sponsered
@@ -269,7 +271,7 @@ export default function ClubAddandEdit(props) {
                         </Col>
                       </Row>
                       <Row className="p-b-16">
-                        <Col className="p-a-0 col-6">
+                        <Col className="p-a-0 col-12">
                           <div className="p-b-8">
                             <label htmlFor="extnchairpersion">
                               Extn.ChairPersion
@@ -294,7 +296,7 @@ export default function ClubAddandEdit(props) {
                         </Col>
                       </Row>
                       <Row className="p-b-16">
-                        <Col className="p-a-0 col-6">
+                        <Col className="p-a-0 col-12">
                           <div className="p-b-8">
                             <label htmlFor="guidinglions">Guiding Lions</label>
                           </div>
@@ -317,7 +319,7 @@ export default function ClubAddandEdit(props) {
                         </Col>
                       </Row>
                       <Row className="p-b-16">
-                        <Col className="p-a-0 col-6">
+                        <Col className="p-a-0 col-12">
                           <div className="p-b-8">
                             <label htmlFor="meetinglocation">
                               Meeting Location
@@ -342,7 +344,7 @@ export default function ClubAddandEdit(props) {
                         </Col>
                       </Row>
                       <Row className="p-b-16">
-                        <Col className="p-a-0 col-6">
+                        <Col className="p-a-0 col-12">
                           <div className="p-b-8">
                             <label htmlFor="meetingdate">Meeting Date</label>
                           </div>
@@ -365,7 +367,7 @@ export default function ClubAddandEdit(props) {
                         </Col>
                       </Row>
                       <Row className="p-b-16">
-                        <Col className="p-a-0 col-6">
+                        <Col className="p-a-0 col-12">
                           <div className="p-b-8">
                             <label htmlFor="meetingtime">Meeting Time</label>
                           </div>
@@ -388,7 +390,7 @@ export default function ClubAddandEdit(props) {
                         </Col>
                       </Row>
                       <Row className="p-b-16">
-                        <Col className="p-a-0 col-6">
+                        <Col className="p-a-0 col-12">
                           <div className="p-b-8">
                             <label htmlFor="clublogo">Club logo</label>
                           </div>
@@ -425,7 +427,7 @@ export default function ClubAddandEdit(props) {
                         </Col>
                       </Row>
                       <Row className="p-b-16">
-                        <Col className="p-a-0 col-6">
+                        <Col className="p-a-0 col-12">
                           <div className="p-b-8">
                             <label htmlFor="clubcirtificate">
                               Club Certificate Image
