@@ -18,7 +18,6 @@ import Aboutus from "./components/ourdistrict/aboutus";
 import Contactus from "./components/ourdistrict/contactus";
 import ContactsList from "./components/adminpanel/contactslist";
 import FindaClub from "./components/ourdistrict/findclub";
-import ClubAddandEdit from "./components/adminpanel/addclub";
 import Clublistpage from "./components/adminpanel/clublistpage";
 import { useLocation } from 'react-router-dom';
 import Managemembers from './components/adminpanel/managemembers';
@@ -59,7 +58,6 @@ function App() {
             <Route exact path="/contactus" element={<Contactus />} />
             <Route exact path="/contactslist" element={<ContactsList />} />
             <Route exact path="/findaclub" element={<FindaClub />} />
-            <Route exact path="/addclub" element={<ClubAddandEdit />} />
             <Route exact path="/clublist" element={<Clublistpage />} />
             <Route exact path="/managemembers" element={<Managemembers />} />
 

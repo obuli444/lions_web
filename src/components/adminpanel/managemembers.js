@@ -18,17 +18,28 @@ import { useFetchCollection } from "../getfirebasedata";
 import { db } from "../../firebase/config";
 import { collection, addDoc } from "firebase/firestore";
 import AppToast from '../common-components/apptoast';
-
+import { DataTable } from "primereact/datatable";
+import { Column } from "primereact/column";
+import { Tag } from "primereact/tag";
+import { Tooltip } from "primereact/tooltip";
+import "primeicons/primeicons.css";
+import { InputText } from "primereact/inputtext";
+import profileplaceholer from '../../assets/profile-placeholder.svg';
+import { doc, updateDoc } from 'firebase/firestore';
 
 export default function Managemembers() {
   const { fbdbdata: clubmemberdetails } =
     useFetchCollection("club-memberdetails");
-  console.log("clubmemberdetails", clubmemberdetails);
   const location = useLocation();
   const [showAddmember, setAddmember] = useState(false);
-  const [profileImage,setProfile] = useState(null);
-  const [showaddSuccess,setAddsuccess] =  useState(false);
-  console.log("location", location);
+  const [profileImage, setProfile] = useState(null);
+  const [showaddSuccess, setAddsuccess] = useState(false);
+  const [globalFilter, setGlobalFilter] = useState(null);
+  const [visibleDeletemember, setDeleteMember] = useState(false);
+  const [showDeleteAlert,setDeleteAlert]  = useState(false);
+
+  const [selectedMember,setSelectedMember] = useState(null);
+
   const {
     register,
     handleSubmit,
@@ -44,7 +55,6 @@ export default function Managemembers() {
     </Link>,
   ];
   async function onSubmit(data) {
-    console.log("data", data);
     let collectionRef = collection(db, "club-memberdetails");
     const {
       firstname,
@@ -83,19 +93,20 @@ export default function Managemembers() {
       worklocation,
       workmailid,
       workphoneno,
-      profileimage: profileImage,
+      profileimage: profileImage ? profileImage : null,
       status: "Active",
       mappedclub: location.state?.data?.clubno,
       clubdetails: {
         clabname: location.state?.data?.clubname,
-        clubno:location.state?.data?.clubno,
+        clubno: location.state?.data?.clubno,
       },
-      createdat: new Date()
+      createdat: new Date(),
     });
     reset();
     setAddmember(false);
+    setAddsuccess(true);
     setTimeout(() => {
-      setAddmember(false);
+      setAddsuccess(false);
     }, 3000);
   }
   const footerContent = (
@@ -112,10 +123,127 @@ export default function Managemembers() {
       </Row>
     </div>
   );
+  const header = (
+    <div className="flex flex-wrap gap-2 align-items-center justify-content-between w-100">
+      <h4 className="m-0">Manage Members</h4>
+      <span>
+        <Button
+          icon="pi pi-plus"
+          rounded
+          outlined
+          className={"addnewmember m-l-16 m-r-16"}
+          data-pr-tooltip="Add New Member"
+          severity="success"
+          onClick={() => {
+            setAddmember(true);
+          }}
+        />
+        <Tooltip target=".addnewmember" mouseTrack mouseTrackLeft={10} />
+
+        <span className="p-input-icon-left">
+          <i className="pi pi-search" />
+          <InputText
+            type="search"
+            onInput={(e) => setGlobalFilter(e.target.value)}
+            placeholder="Search..."
+          />
+        </span>
+      </span>
+    </div>
+  );
+
+  const statusBodyTemplate = (rowData) => {
+    return (
+      <Tag value={rowData.status} severity={getSeverity(rowData.status)}></Tag>
+    );
+  };
+  const getSeverity = (status) => {
+    switch (status) {
+      case "Active":
+        return "success";
+
+      case "Inactive":
+        return "danger";
+      default:
+        return null;
+    }
+  };
+  const footerDeleteContent = (
+    <div>
+        <Button label="No" icon="pi pi-times" onClick={() => setDeleteMember(false)} className="p-button-text" />
+        <Button label="Yes" icon="pi pi-check" onClick={() => DeleteMemberdetails()} autoFocus />
+    </div>
+);
+ 
+function DeleteMemberdetails(){
+  const docRef = doc(db, "club-memberdetails", selectedMember.id);
+  let updatedObj = selectedMember;
+  updatedObj["status"] = "Inactive";
+  updateDoc(docRef, updatedObj);
+  setDeleteMember(false);
+  setDeleteAlert(true);
+  setTimeout(() => {
+    setDeleteAlert(false);
+  }, 3000);
+ setSelectedMember(null);
+
+}
+
+  const clubMemberTemplate = (rowdata) => {
+    return (
+      <React.Fragment>
+        <img
+          src={
+            !_.isNil(rowdata.profileimage) && rowdata.profileimage !== ""
+              ? rowdata.profileimage
+              : profileplaceholer
+          }
+          alt={rowdata.firstname}
+          width={"50px"}
+        />
+      </React.Fragment>
+    );
+  };
+
+  const actionBodyTemplate = (rowData) => {
+    return (
+      <React.Fragment>
+        <Tooltip target=".clubmembers" mouseTrack mouseTrackLeft={10} />
+        <Button
+          icon="pi pi-pencil"
+          rounded
+          outlined
+          className="m-r-16 editclub"
+          data-pr-tooltip="Edit Club"
+          onClick={() =>{}}
+        />
+        {rowData.status !== null && rowData.status === "Active" && (
+          <Button
+            icon="pi pi-trash"
+            rounded
+            outlined
+            className={"deletemember"}
+            severity="danger m-r-16 "
+            data-pr-tooltip="Delete Club"
+            onClick={() => {
+              setDeleteMember(true);
+              setSelectedMember(rowData);
+            }}
+          />
+        )}
+      </React.Fragment>
+    );
+  };
   return (
     <React.Fragment>
-       {showaddSuccess&&  
-     <AppToast showAleart={showaddSuccess} icon="mgc_check_circle_fill" message={`Member Added Successfully`} />}
+      {showaddSuccess && (
+        <AppToast
+          showAleart={showaddSuccess}
+          icon="mgc_check_circle_fill"
+          message={`Member Added Successfully`}
+        />
+      )}
+            {showDeleteAlert&&  <AppToast showAleart={showDeleteAlert} icon="mgc_check_circle_fill" message={`Member Deleted Sucessfully`} />}
       <Stack spacing={2} className="p-a-24">
         <Breadcrumbs separator="›" aria-label="breadcrumb">
           {breadcrumbs}
@@ -125,7 +253,37 @@ export default function Managemembers() {
       clubmemberdetails.filter(
         (ele) => ele.mappedclub === location.state?.data?.clubno
       ).length !== 0 ? (
-        ""
+        <div className="card">
+          <DataTable
+            paginator
+            rows={20}
+            globalFilter={globalFilter}
+            header={header}
+            value={clubmemberdetails.filter(
+              (ele) => ele.mappedclub === location.state?.data?.clubno
+            )}
+            showGridlines
+            tableStyle={{ minWidth: "50rem" }}
+          >
+            <Column
+              field="profileimage"
+              sortable
+              header="PROFILE IMAGE"
+              body={clubMemberTemplate}
+            ></Column>
+            <Column field="firstname" sortable header="FIRST NAME"></Column>
+            <Column field="lastname" sortable header="LAST NAME"></Column>
+            <Column field="bloodgroup" sortable header="BLOOD GROUP"></Column>
+            <Column field="dob" sortable header="DATE OF BIRTH"></Column>
+            <Column
+              field="status"
+              sortable
+              header="STATUS"
+              body={statusBodyTemplate}
+            ></Column>
+            <Column body={actionBodyTemplate} exportable={false}></Column>
+          </DataTable>
+        </div>
       ) : (
         <Box sx={{ flexGrow: 1 }} className="managemembe-empty">
           <Grid container spacing={2}>
@@ -484,7 +642,7 @@ export default function Managemembers() {
                               const fileReader = new FileReader();
                               fileReader.onload = () => {
                                 const srcData = fileReader.result;
-                                setProfile(srcData)
+                                setProfile(srcData);
                               };
                               fileReader.readAsDataURL(imageFile);
                             }
@@ -580,7 +738,9 @@ export default function Managemembers() {
                   <Row className="p-b-16">
                     <Col className="p-a-0 col-12">
                       <div className="p-b-8">
-                        <label htmlFor="worklocation">Business Location Address</label>
+                        <label htmlFor="worklocation">
+                          Business Location Address
+                        </label>
                       </div>
                       <div className="">
                         <Form.Control
@@ -605,6 +765,16 @@ export default function Managemembers() {
             </Grid>
           </Grid>
         </Box>
+      </Dialog>
+      {/* Delete Club */}
+      <Dialog
+        header={"Delete Member"}
+        visible={visibleDeletemember}
+        style={{ width: "30vw" }}
+        onHide={() => setDeleteMember(false)}
+        footer={footerDeleteContent}
+      >
+        <h4 className="m-0">Are you sure want to delete member ?</h4>
       </Dialog>
     </React.Fragment>
   );

@@ -11,7 +11,7 @@ import { Dialog } from "primereact/dialog";
 import ClubAddandEdit from "../adminpanel/addclub";
 import { useNavigate } from "react-router-dom";
 import AppToast from '../common-components/apptoast';
-import { onSnapshot, query, collection, deleteDoc, doc, updateDoc, getDoc } from 'firebase/firestore';
+import { doc, updateDoc } from 'firebase/firestore';
 import { db } from "../../firebase/config";
 
 export default function Clublistpage() {
