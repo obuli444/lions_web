@@ -9,7 +9,7 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import AppToast from '../common-components/apptoast';
 import { db } from "../../firebase/config";
-import { collection,addDoc } from "firebase/firestore";
+import { collection,addDoc,serverTimestamp } from "firebase/firestore";
 
 
 export default function Contactus() {
@@ -22,8 +22,10 @@ export default function Contactus() {
     reset
   } = useForm();
   async function onSubmit(data) {
-    data['createdt']=new Date();
-    const {fullname,email,mobileno,message,createdt} = data;
+    data['createdt']=serverTimestamp();
+    data['updateddt']= serverTimestamp();
+    data['updatedby']=null;
+    const {fullname,email,mobileno,message,createdt,updateddt,updatedby} = data;
     let collectionRef = collection(db, 'contactusdetails');
     setAlert(true);
     await addDoc(collectionRef, {
@@ -32,7 +34,9 @@ export default function Contactus() {
       mobileno,
       message,
       createdt,
-      status: 'Active'
+      status: 'Active',
+      updateddt,
+      updatedby
     });
     setTimeout(() => {
       setAlert(false);

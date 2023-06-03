@@ -6,20 +6,45 @@ import { Button } from "primereact/button";
 import "primeicons/primeicons.css";
 import { InputText } from "primereact/inputtext";
 import { Tag } from "primereact/tag";
+import moment from 'moment'
+import _ from "lodash";
 import { Tooltip } from "primereact/tooltip";
 import { Dialog } from "primereact/dialog";
 import AppToast from "../common-components/apptoast";
-import { doc, updateDoc } from "firebase/firestore";
+import { doc, serverTimestamp, updateDoc,deleteDoc } from "firebase/firestore";
 import { db } from "../../firebase/config";
 
 export default function ContactsList() {
   const { fbdbdata: contactusdetails } = useFetchCollection("contactusdetails");
   const [globalFilter, setGlobalFilter] = useState(null);
+  const [visibleDeleteContact, setDeleteContact] = useState(false);
+  const [showDeleteAlert,setDeleteAlert]  = useState(false);
+
+  const [selectedContact,setSelectedContact] = useState(null);
   const statusBodyTemplate = (rowData) => {
     return (
       <Tag value={rowData.status} severity={getSeverity(rowData?.status)}></Tag>
     );
   };
+  const footerDeleteContent = (
+    <div>
+        <Button label="No" icon="pi pi-times" onClick={() => setDeleteContact(false)} className="p-button-text" />
+        <Button label="Yes" icon="pi pi-check" onClick={() => {
+            const docRef = doc(db, "contactusdetails", selectedContact.id);
+            let updatedObj = selectedContact;
+            updatedObj["status"] = `${selectedContact.status === 'Active' ? 'Inactive':'Active'}`;
+            updatedObj["updateddt"] = serverTimestamp();
+            updatedObj["updatedby"] = "Admin";
+            updateDoc(docRef, updatedObj);
+            setDeleteContact(false);
+            setDeleteAlert(true);
+            setTimeout(() => {
+              setDeleteAlert(false);
+            }, 3000);
+            setSelectedContact(null);
+        }} autoFocus />
+    </div>
+);
   const getSeverity = (status) => {
     switch (status) {
       case "Active":
@@ -68,16 +93,27 @@ export default function ContactsList() {
                 : "Activate Contact"
             }
             onClick={() => {
-              "";
+              setSelectedContact(rowData);
+              setDeleteContact(true);
             }}
           />
         }
       </React.Fragment>
     );
   };
-  console.log("contactusdetails", contactusdetails);
+  const createdAtTemplate = (rowData) => {
+    return <React.Fragment>
+      {!_.isNil(rowData.createdt)? moment(rowData.createdt.toDate()).format('LLLL'):null}
+    </React.Fragment>;
+  };
+  const updateddtTemplate = (rowData) => {
+    return <React.Fragment>
+      {!_.isNil(rowData.updateddt)? moment(rowData.updateddt.toDate()).format('LLLL'):null}
+    </React.Fragment>;
+  };
   return (
     <React.Fragment>
+      {showDeleteAlert&&  <AppToast showAleart={showDeleteAlert} icon="mgc_check_circle_fill" message={`Contact us Deleted Sucessfully`} />}
       {contactusdetails !== null && (
                 <div className="card">
                   <DataTable
@@ -85,7 +121,7 @@ export default function ContactsList() {
                     rows={10}
                     globalFilter={globalFilter}
                     header={header}
-                    value={contactusdetails}
+                    value={_.orderBy(contactusdetails,['createdt'],['desc'])}
                     showGridlines
                     tableStyle={{ minWidth: "50rem" }}
                   >
@@ -102,6 +138,12 @@ export default function ContactsList() {
                     ></Column>
                     <Column field="message" sortable header="MESSAGE"></Column>
                     <Column
+                      field="createdt"
+                      sortable
+                      header="CREATED DATE"
+                      body={createdAtTemplate}
+                    ></Column>                   
+                    <Column
                       field="status"
                       sortable
                       header="STATUS"
@@ -114,6 +156,16 @@ export default function ContactsList() {
                   </DataTable>
                 </div>
               )}
+                {/* Delete Club */}
+    {visibleDeleteContact&&  <Dialog
+        header={`${selectedContact.status === 'Active' ? 'Delete Contact':'Activate Contact'}`}
+        visible={visibleDeleteContact}
+        style={{ width: "30vw" }}
+        onHide={() => setDeleteContact(false)}
+        footer={footerDeleteContent}
+      >
+        <h4 className="m-0">{`Are you sure want to ${selectedContact.status === 'Active' ? 'Delete Contact':'Activate Contact'} ?`}</h4>
+      </Dialog>}
     </React.Fragment>
   );
 }
