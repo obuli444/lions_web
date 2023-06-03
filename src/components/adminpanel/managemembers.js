@@ -47,7 +47,7 @@ export default function Managemembers() {
     reset,
   } = useForm();
   const breadcrumbs = [
-    <Link underline="hover" key="1" color="inherit" href="/clublist">
+    <Link underline="hover" key="1" color="inherit" href="/admindashboard">
       Manage Clubs
     </Link>,
     <Link underline="hover" key="2" color="inherit">
