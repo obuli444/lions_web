@@ -49,7 +49,7 @@ export default function Header() {
   return (
     <React.Fragment>
       <Navbar bg="light" expand="lg">
-        <Container className="m-a-0 p-a-0">
+        <div className="m-a-0 p-a-0 footer-grid-links-sections">
           <Navbar.Brand href="/">
             <img src={headerlogo} className="header-logo" alt="header-logo" />
           </Navbar.Brand>
@@ -70,7 +70,7 @@ export default function Header() {
             </Offcanvas.Header>
             <div className="divider-line mobile-divider"></div>
             <Offcanvas.Body>
-              <Nav className="justify-content-end flex-grow-1 pe-3">
+              <Nav className="justify-content-end flex-grow-1 pe-3 p-r-0">
                 <Nav.Link href="/">Activities</Nav.Link>
                 <Nav.Link href="/programsandinitiatives">Programs & Initiatives</Nav.Link>
                 <Nav.Link href="/resorces">Resources</Nav.Link>
@@ -87,14 +87,14 @@ export default function Header() {
                   })}
                 </NavDropdown>
                 <p className="web-menu web-login-btn">Login</p>
-                <p className="web-menu web-donate-btn">Donate</p>
+                <p className="web-menu web-donate-btn m-r-0">Donate</p>
               </Nav>
             </Offcanvas.Body>
             <Nav.Link className="mobile-menu mobile-login-btn">Login</Nav.Link>
           <Nav.Link className="mobile-menu mobile-donate-btn">Donate</Nav.Link>
           </Navbar.Offcanvas>
          
-        </Container>
+        </div>
       </Navbar>
       <div className="divider-line"></div>
     </React.Fragment>
