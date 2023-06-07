@@ -13,20 +13,28 @@ import { useNavigate } from "react-router-dom";
 import AppToast from '../common-components/apptoast';
 import { doc, updateDoc } from 'firebase/firestore';
 import { db } from "../../firebase/config";
+import { Sidebar } from 'primereact/sidebar';
+import _ from 'lodash';
+
+import AppCommonCollections from '../../firebase/app-collections';
+
 
 export default function Clublistpage() {
   const navigate = useNavigate();
-  const { fbdbdata: clubdetails } = useFetchCollection("clubdetails");
+  const { fbdbdata: clubdetails } = useFetchCollection(AppCommonCollections.clubmembercollections[0]);
   const [globalFilter, setGlobalFilter] = useState(null);
   const [visibleClub, setClubVisible] = useState(false);
   const [visibleDeleteclub, setDeleteClub] = useState(false);
-  const [selectedClub,setSelectedClub] = useState(null);
-  const [showDeleteAlert,setDeleteAlert]  = useState(false);
+  const [selectedClub, setSelectedClub] = useState(null);
+  const [showDeleteAlert, setDeleteAlert] = useState(false);
+  const [selectedClubActivities,setClubActivities] =  useState(null);
 
   const actionBodyTemplate = (rowData) => {
     return (
       <React.Fragment>
         <Tooltip target=".clubmembers" mouseTrack mouseTrackLeft={10} />
+        <Tooltip target=".clubactivities" mouseTrack mouseTrackLeft={10} />
+
         <Button
           icon="pi pi-pencil"
           rounded
@@ -35,31 +43,46 @@ export default function Clublistpage() {
           data-pr-tooltip="Edit Club"
           onClick={() => console.log("edit", rowData)}
         />
-        {rowData.status!==null&&rowData.status==='Active'&&   
-        <Button
-          icon="pi pi-trash"
-          rounded
-          outlined
-          className={"deleteclub"}
-          severity="danger m-r-16 "
-          data-pr-tooltip="Delete Club"
-          onClick={() => {setDeleteClub(true);
-            setSelectedClub(rowData)}}
-        />
-        
-        
-        }
-      
+        {rowData.status !== null && rowData.status === "Active" && (
+          <Button
+            icon="pi pi-trash"
+            rounded
+            outlined
+            className={"deleteclub"}
+            severity="danger m-r-16 "
+            data-pr-tooltip="Delete Club"
+            onClick={() => {
+              setDeleteClub(true);
+              setSelectedClub(rowData);
+            }}
+          />
+        )}
+        {rowData.status !== null && rowData.status === "Active" && (
+          <Button
+            icon="pi pi-list"
+            rounded
+            outlined
+            className={"clubactivities"}
+            severity="warning"
+            data-pr-tooltip="Manage Club Activities / Events"
+            onClick={() => {
+              setClubActivities(rowData);
+            }}
+          />
+        )}
+
         <Button
           icon="pi pi-users"
           rounded
           outlined
-          className={"clubmembers"}
+          className={"clubmembers m-l-16"}
           severity="help"
           data-pr-tooltip="Manage Members"
           onClick={() => {
-            navigate('/managemembers',{replace : true,state:{data:rowData}});
-
+            navigate("/managemembers", {
+              replace: true,
+              state: { data: rowData },
+            });
           }}
         />
       </React.Fragment>
@@ -68,7 +91,7 @@ export default function Clublistpage() {
 
   const closePanel = (data) => {
     setClubVisible(data);
-  }
+  };
 
   const header = (
     <div className="flex flex-wrap gap-2 align-items-center justify-content-between w-100">
@@ -110,24 +133,33 @@ export default function Clublistpage() {
   };
   const footerDeleteContent = (
     <div>
-        <Button label="No" icon="pi pi-times" onClick={() => setDeleteClub(false)} className="p-button-text" />
-        <Button label="Yes" icon="pi pi-check" onClick={() => DeleteClubDetails()} autoFocus />
+      <Button
+        label="No"
+        icon="pi pi-times"
+        onClick={() => setDeleteClub(false)}
+        className="p-button-text"
+      />
+      <Button
+        label="Yes"
+        icon="pi pi-check"
+        onClick={() => DeleteClubDetails()}
+        autoFocus
+      />
     </div>
-);
+  );
 
-const DeleteClubDetails=()=>{
- const docRef = doc(db, "clubdetails", selectedClub.id);
- let updatedObj = selectedClub;
- updatedObj['status']='Inactive';
- updateDoc(docRef, updatedObj);
- setDeleteClub(false);
- setDeleteAlert(true);
- setTimeout(() => {
-  setDeleteAlert(false);
-}, 3000);
-setSelectedClub(null);
-
-}
+  const DeleteClubDetails = () => {
+    const docRef = doc(db, AppCommonCollections.clubmembercollections[0], selectedClub.id);
+    let updatedObj = selectedClub;
+    updatedObj["status"] = "Inactive";
+    updateDoc(docRef, updatedObj);
+    setDeleteClub(false);
+    setDeleteAlert(true);
+    setTimeout(() => {
+      setDeleteAlert(false);
+    }, 3000);
+    setSelectedClub(null);
+  };
   const clubSpecialties = (rowData) => {
     return (
       <React.Fragment>
@@ -176,7 +208,13 @@ setSelectedClub(null);
   };
   return (
     <React.Fragment>
-      {showDeleteAlert&&  <AppToast showAleart={showDeleteAlert} icon="mgc_check_circle_fill" message={`Club Deleted Sucessfully`} />}
+      {showDeleteAlert && (
+        <AppToast
+          showAleart={showDeleteAlert}
+          icon="mgc_check_circle_fill"
+          message={`Club Deleted Sucessfully`}
+        />
+      )}
 
       {clubdetails !== null ? (
         <div className="card">
@@ -229,11 +267,16 @@ setSelectedClub(null);
         <ClubAddandEdit closePanel={closePanel} />
       </Dialog>
       {/* Delete Club */}
-      <Dialog header={"Delete Club"} visible={visibleDeleteclub} style={{ width: '30vw' }} onHide={() => setDeleteClub(false)} footer={footerDeleteContent}>
-                <h4 className="m-0">
-                  Are you sure want to delete club ?
-                </h4>
-            </Dialog>
+      <Dialog
+        header={"Delete Club"}
+        visible={visibleDeleteclub}
+        style={{ width: "30vw" }}
+        onHide={() => setDeleteClub(false)}
+        footer={footerDeleteContent}
+      >
+        <h4 className="m-0">Are you sure want to delete club ?</h4>
+      </Dialog>
+
     </React.Fragment>
   );
 }

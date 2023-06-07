@@ -4,8 +4,9 @@ import Grid from '@mui/material/Grid';
 import { useFetchCollection } from "./getfirebasedata";
 import sectiontwodivider from '../assets/sectiontwodivider.png';
 import homesectiontwo from '../assets/homesectiontwo.png';
+import AppCommonCollections from '../firebase/app-collections';
 export default function Ourmissionsection(){
-    const { fbdbdata: ourmissiondata } = useFetchCollection("ourmission");
+    const { fbdbdata: ourmissiondata } = useFetchCollection(AppCommonCollections.homepagecollections[0]);
     return (
       <React.Fragment>
         <Box sx={{ flexGrow: 1 }} className="p-t-84">

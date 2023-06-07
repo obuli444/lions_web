@@ -10,6 +10,7 @@ import Col from "react-bootstrap/Col";
 import AppToast from '../common-components/apptoast';
 import { db } from "../../firebase/config";
 import { collection,addDoc,serverTimestamp } from "firebase/firestore";
+import AppCommonCollections from "../../firebase/app-collections";
 
 
 export default function Contactus() {
@@ -26,7 +27,7 @@ export default function Contactus() {
     data['updateddt']= serverTimestamp();
     data['updatedby']=null;
     const {fullname,email,mobileno,message,createdt,updateddt,updatedby} = data;
-    let collectionRef = collection(db, 'contactusdetails');
+    let collectionRef = collection(db, AppCommonCollections.contactuscollections[0]);
     setAlert(true);
     await addDoc(collectionRef, {
       fullname,

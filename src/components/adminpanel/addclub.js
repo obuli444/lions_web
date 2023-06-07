@@ -18,6 +18,8 @@ import environment from "../../assets/specialties/Environment.png";
 import childcancer from "../../assets/specialties/Childcancer.png";
 import AppToast from '../common-components/apptoast';
 
+import AppCommonCollections from '../../firebase/app-collections';
+
 export default function ClubAddandEdit(props) {
   const [clublogourl, setclubLogo] = useState("");
   const [certificateurl, setCertificate] = useState("");
@@ -74,7 +76,7 @@ export default function ClubAddandEdit(props) {
   } = useForm();
   async function onSubmit(data) {
     console.log(data);
-    let collectionRef = collection(db, "clubdetails");
+    let collectionRef = collection(db, AppCommonCollections.clubmembercollections[0]);
     const {
       clubname,
       clubdistrict,
@@ -189,14 +191,14 @@ export default function ClubAddandEdit(props) {
                                 setSelectedSpecialties(e.value);
                               }}
                               optionLabel="name"
-                              placeholder="Select Countries"
+                              placeholder="Select Specialties"
                               itemTemplate={countryTemplate}
                               className="w-100"
                               display="chip"
                             />
                             {isspecselected && (
                               <span className="error-span">
-                                Specialties On is required
+                                Specialties is required
                               </span>
                             )}
                           </div>

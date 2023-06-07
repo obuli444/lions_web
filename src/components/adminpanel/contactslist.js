@@ -15,9 +15,11 @@ import { doc, serverTimestamp, updateDoc, deleteDoc } from "firebase/firestore";
 import { db } from "../../firebase/config";
 import { Message } from 'primereact/message';
 
+import AppCommonCollections from "../../firebase/app-collections";
+
 export default function ContactsList() {
-  const { fbdbdata: contactusdetails } = useFetchCollection("contactusdetails");
-  console.log("contactusdetails",contactusdetails);
+  const { fbdbdata: contactusdetails } = useFetchCollection(AppCommonCollections.contactuscollections[0]);
+  console.log(AppCommonCollections.contactuscollections[0],contactusdetails);
   const [globalFilter, setGlobalFilter] = useState(null);
   const [visibleDeleteContact, setDeleteContact] = useState(false);
   const [showDeleteAlert, setDeleteAlert] = useState(false);
@@ -64,7 +66,7 @@ const footerDeleteContent = (
       label="Yes"
       icon="pi pi-check"
       onClick={() => {
-        const docRef = doc(db, "contactusdetails", selectedContact.id);
+        const docRef = doc(db, AppCommonCollections.contactuscollections[0], selectedContact.id);
         let updatedObj = selectedContact;
         updatedObj["status"] = `${
           selectedContact.status === "Active" ? "Inactive" : "Active"
@@ -190,7 +192,7 @@ const footerDeleteContent = (
   const BulkDelete = () => {
     selectedContactsrow.length !== 0 &&
       selectedContactsrow.map(async (ele) => {
-        const docRef = doc(db, "contactusdetails",ele.id);
+        const docRef = doc(db, AppCommonCollections.contactuscollections[0],ele.id);
         return await deleteDoc(docRef);
       });
       setBulkDelete(false);

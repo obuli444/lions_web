@@ -2,11 +2,13 @@ import React from "react";
 import Grid from "@mui/material/Grid";
 import Box from "@mui/material/Box";
 import { useFetchCollection } from "../getfirebasedata";
+import AppCommonCollections from '../../firebase/app-collections';
+
 
 export default function CommonHeader(props) {
   console.log("props", props);
   const { formaltitle, name, designation } = props.details;
-  const { fbdbdata: logodetails } = useFetchCollection("logodetails");
+  const { fbdbdata: logodetails } = useFetchCollection(AppCommonCollections.applogocollections[0]);
   return (
     <React.Fragment>
       <Box

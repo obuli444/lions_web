@@ -8,10 +8,12 @@ import Col from "react-bootstrap/Col";
 import playstore from "../assets/playstore.png";
 import appstore from "../assets/appstore.png";
 import FooterSectionone from "./footersectionone";
+import AppCommonCollections from '../firebase/app-collections';
+
 export default function Footer() {
   const { fbdbdata: footersectiontwo } =
-    useFetchCollection("footeradsectiontwo");
-  const { fbdbdata: footerlogo } = useFetchCollection("footerlogo");
+    useFetchCollection(AppCommonCollections.footercollections[1]);
+  const { fbdbdata: footerlogo } = useFetchCollection(AppCommonCollections.footercollections[2]);
   return (
     <React.Fragment>
       {/* Sectionone ad with donate content */}

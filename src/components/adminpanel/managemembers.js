@@ -26,10 +26,11 @@ import "primeicons/primeicons.css";
 import { InputText } from "primereact/inputtext";
 import profileplaceholer from '../../assets/profile-placeholder.svg';
 import { doc, updateDoc } from 'firebase/firestore';
+import AppCommonCollections from "../../firebase/app-collections";
 
 export default function Managemembers() {
   const { fbdbdata: clubmemberdetails } =
-    useFetchCollection("club-memberdetails");
+    useFetchCollection(AppCommonCollections.clubmembercollections[1]);
   const location = useLocation();
   const [showAddmember, setAddmember] = useState(false);
   const [profileImage, setProfile] = useState(null);
@@ -51,11 +52,11 @@ export default function Managemembers() {
       Manage Clubs
     </Link>,
     <Link underline="hover" key="2" color="inherit">
-      <b>Manage {location.state.data.clubname} Members</b>
+      <b>Manage {location.state?.data?.clubname} Members</b>
     </Link>,
   ];
   async function onSubmit(data) {
-    let collectionRef = collection(db, "club-memberdetails");
+    let collectionRef = collection(db, AppCommonCollections.clubmembercollections[1]);
     const {
       firstname,
       lastname,
@@ -176,7 +177,7 @@ export default function Managemembers() {
 );
  
 function DeleteMemberdetails(){
-  const docRef = doc(db, "club-memberdetails", selectedMember.id);
+  const docRef = doc(db, AppCommonCollections.clubmembercollections[1], selectedMember.id);
   let updatedObj = selectedMember;
   updatedObj["status"] = "Inactive";
   updateDoc(docRef, updatedObj);

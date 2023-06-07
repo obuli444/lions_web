@@ -2,10 +2,11 @@ import React from "react";
 import Box from "@mui/material/Box";
 import Grid from "@mui/material/Grid";
 import { useFetchCollection } from "./getfirebasedata";
+import AppCommonCollections from '../firebase/app-collections';
 
 export default function FooterSectionone() {
   const { fbdbdata: footersectionone } =
-    useFetchCollection("footeradsectionone");
+    useFetchCollection(AppCommonCollections.footercollections[0]);
   return (
     <React.Fragment>
       <Box sx={{ flexGrow: 1 }} className="footer-sectionone">

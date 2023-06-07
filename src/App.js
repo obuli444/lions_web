@@ -20,6 +20,8 @@ import FindaClub from "./components/ourdistrict/findclub";
 import { useLocation } from 'react-router-dom';
 import Managemembers from './components/adminpanel/managemembers';
 import Admindashboard from './components/adminpanel/admindashboard';
+import Becomeamember from './components/ourdistrict/becomemember';
+import ClubActivities from './components/adminpanel/clubactivities';
 
 
 function App() {
@@ -59,11 +61,14 @@ function App() {
             <Route exact path="/findaclub" element={<FindaClub />} />
             <Route exact path="/managemembers" element={<Managemembers />} />
             <Route exact path="/admindashboard" element={<Admindashboard />} />
+            <Route exact path="/becomeamember" element={<Becomeamember />} />
+
+            <Route exact path="/clubactivities" element={<ClubActivities />} />
 
 
           </Routes>
         </div>
-        {location.pathname!=='/becomeamember'&&<Footer />}
+        {location.pathname!=='/becomeamember'&&location.pathname!=='/admindashboard'&&location.pathname!=='/managemembers'&&<Footer />}
        
       </div>
     </React.Fragment>

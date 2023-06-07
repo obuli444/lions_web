@@ -7,13 +7,14 @@ import appstore from "../assets/appstore.png";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
+import AppCommonCollections from '../firebase/app-collections';
 export default function Resorces() {
   const { fbdbdata: resourcesdistrict } =
-    useFetchCollection("resourcesdistrict");
+    useFetchCollection(AppCommonCollections.resourcescollection[0]);
   const { fbdbdata: resourcesdownload } =
-    useFetchCollection("resourcesdownload");
+    useFetchCollection(AppCommonCollections.resourcescollection[1]);
   const { fbdbdata: resourcesmobileapp } =
-    useFetchCollection("resourcesmobileapp");
+    useFetchCollection(AppCommonCollections.resourcescollection[2]);
   return (
     <React.Fragment>
       <Box sx={{ flexGrow: 1 }} className="ourleader-p-t-40 p-l-84">

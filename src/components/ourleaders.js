@@ -8,15 +8,14 @@ import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
 import Typography from "@mui/material/Typography";
+import AppCommonCollections from '../firebase/app-collections';
+
 
 export default function HomeOurleader(){
   const { fbdbdata: ourleaderssection } =
-    useFetchCollection("ourleaderssection");
+    useFetchCollection(AppCommonCollections.homepagecollections[1]);
   const { fbdbdata: ourmissionsectiontitle } = useFetchCollection(
-    "ourmissionsectiontitle"
-  );
-  const { fbdbdata: activitiessection } = useFetchCollection(
-    "activitiessection"
+    AppCommonCollections.homepagecollections[2]
   );
   const responsiveOptions = [
     {

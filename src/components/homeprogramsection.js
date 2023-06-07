@@ -5,14 +5,15 @@ import ProgramsCards from "../components/programscards";
 import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
 import sectionfourdivider from './../assets/sectionfourdivider.png';
+import AppCommonCollections from '../firebase/app-collections';
+
 
 export default function HomeProgramssection() {
   const { fbdbdata: programsdata } = useFetchCollection(
-    "programsandinitiatives"
+    AppCommonCollections.homepagecollections[4]
   );
   const { fbdbdata: programstitle } = useFetchCollection(
-    "programssectiontitle"
-  );
+    AppCommonCollections.homepagecollections[3]  );
   const responsiveOptions = [
     {
       breakpoint: "1199px",

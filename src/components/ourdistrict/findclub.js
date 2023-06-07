@@ -3,9 +3,11 @@ import Grid from "@mui/material/Grid";
 import Box from "@mui/material/Box";
 import { useFetchCollection } from "../getfirebasedata";
 import Clubcard from '../ourdistrict/clubcard';
+import { Message } from 'primereact/message';
+import AppCommonCollections from "../../firebase/app-collections";
 
 export default function FindaClub() {
-  const { fbdbdata: clubdetails } = useFetchCollection("clubdetails");
+  const { fbdbdata: clubdetails } = useFetchCollection(AppCommonCollections.clubmembercollections[0]);
   return (
     <React.Fragment>
       <Box sx={{ flexGrow: 1 }} className="p-a-84">
@@ -21,7 +23,7 @@ export default function FindaClub() {
           </Grid>
         </Grid>
         <Grid container className="p-t-40 " spacing={2}>
-          {clubdetails !== null && clubdetails.length !== 0 ? (
+          {clubdetails !== null && clubdetails.length !== 0? (
             clubdetails.map((element) => {
               if (element.status === "Active" && element.status !== null) {
                 return (
@@ -46,7 +48,7 @@ export default function FindaClub() {
               }
             })
           ) : (
-            <p className="text-center">No Clubs Found</p>
+            <Message severity="info" className="w-100" text="No Clubs Found" />
           )}
           <Grid item xs={12} className="p-t-0"></Grid>
         </Grid>
