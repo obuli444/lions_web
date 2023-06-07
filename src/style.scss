@@ -444,6 +444,11 @@ border-radius: 16px;
     width: 100vw;
     height: 100vh;
 }
+.footer-grid-links-sections{
+    display: inline-flex !important;
+    justify-content: space-between !important;
+    width: 100% !important;
+}
 .carousal-image {
     object-fit: fill;
     object-position: center;

@@ -14,13 +14,13 @@ import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
 import Typography from "@mui/material/Typography";
+import AppCommonCollections from "../../firebase/app-collections";
 // import { Carousel } from "primereact/carousel";
 
 
 export default function Aboutus() {
   const { fbdbdata: aboutusourobjective } = useFetchCollection(
-    "aboutus-ourobjective"
-  );
+    AppCommonCollections.ourdistrictcollections[0]  );
   // const { fbdbdata: Pastdistrictgovernorsdata } = useFetchCollection(
   //   "aboutus-Pastdistrictgovernors"
   // );

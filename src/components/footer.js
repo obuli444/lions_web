@@ -32,7 +32,7 @@ export default function Footer() {
         </Grid>
       </Box>
       <Box sx={{ flexGrow: 1 }} className="footer-sectionone footer-sectiontwo">
-        <Grid container spacing={2}>
+        <Grid container spacing={2} className="footer-grid-links-sections">
           <Grid item xs={12} sm={12} md={2}>
             {footerlogo !== null && (
               <img
