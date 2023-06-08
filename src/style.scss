@@ -458,6 +458,22 @@ border-radius: 16px;
     height: 100vh;
     overflow: hidden;
 }
+.admin-navlink{
+    span{
+        font-weight: 600 !important;
+        color: $white !important;
+    }
+}
+.primary-admin-nav{
+    background: $primary-color !important;
+}
+.admin-dashboard-sidenav{
+    .MuiDrawer-docked{
+        .MuiDrawer-paper {
+            background: $primary-color !important;
+        }
+    }
+}
 
 .carousel-caption {
     bottom: 14rem;
@@ -627,6 +643,13 @@ color: $white;
 }
 .p-b-40{
     padding-bottom: 40px !important;
+}
+.p-b-24{
+    padding-bottom: 24px !important;
+}
+.pi-home{
+    font-size: 24px !important;
+    cursor: pointer;
 }
 .m-a-0{
     margin: 0px !important;

@@ -22,14 +22,18 @@ import Managemembers from './components/adminpanel/managemembers';
 import Admindashboard from './components/adminpanel/admindashboard';
 import Becomeamember from './components/ourdistrict/becomemember';
 import ClubActivities from './components/adminpanel/clubactivities';
+import PermanentDrawerLeft from './components/adminpanel/appdrawer';
 
 
 function App() {
   const location = useLocation();
+  console.log("location",location);
   return (
     <React.Fragment>
       <div className="App">
-        <Header />
+        {location.pathname!=='/admindashboard'&& <Header />}
+        {(location.pathname==='/admindashboard' || location.pathname === '/admindashboard/managemembers')&&  <PermanentDrawerLeft/>}
+       
         <div className="routing-content">
           <Routes>
             <Route exact path="/" element={<Homepage />} />
@@ -59,7 +63,7 @@ function App() {
             <Route exact path="/aboutus" element={<Aboutus />} />
             <Route exact path="/contactus" element={<Contactus />} />
             <Route exact path="/findaclub" element={<FindaClub />} />
-            <Route exact path="/managemembers" element={<Managemembers />} />
+            <Route exact path="/admindashboard/managemembers" element={<Managemembers />} />
             <Route exact path="/admindashboard" element={<Admindashboard />} />
             <Route exact path="/becomeamember" element={<Becomeamember />} />
 

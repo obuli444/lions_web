@@ -180,15 +180,15 @@ const footerDeleteContent = (
       </React.Fragment>
     );
   };
-  const updateddtTemplate = (rowData) => {
-    return (
-      <React.Fragment>
-        {!_.isNil(rowData.updateddt)
-          ? moment(rowData.updateddt.toDate()).format("LLLL")
-          : null}
-      </React.Fragment>
-    );
-  };
+  // const updateddtTemplate = (rowData) => {
+  //   return (
+  //     <React.Fragment>
+  //       {!_.isNil(rowData.updateddt)
+  //         ? moment(rowData.updateddt.toDate()).format("LLLL")
+  //         : null}
+  //     </React.Fragment>
+  //   );
+  // };
   const BulkDelete = () => {
     selectedContactsrow.length !== 0 &&
       selectedContactsrow.map(async (ele) => {

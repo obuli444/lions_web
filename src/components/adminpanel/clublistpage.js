@@ -79,7 +79,7 @@ export default function Clublistpage() {
           severity="help"
           data-pr-tooltip="Manage Members"
           onClick={() => {
-            navigate("/managemembers", {
+            navigate("/admindashboard/managemembers", {
               replace: true,
               state: { data: rowData },
             });
