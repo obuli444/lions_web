@@ -647,9 +647,10 @@ color: $white;
 .p-b-24{
     padding-bottom: 24px !important;
 }
-.pi-home{
+.pi-home,.pi-icon,.pi-users,.pi-user,.pi-comments,.pi-list{
     font-size: 24px !important;
-    cursor: pointer;
+    cursor: pointer; 
+    vertical-align: bottom;
 }
 .m-a-0{
     margin: 0px !important;

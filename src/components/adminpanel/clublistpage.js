@@ -15,8 +15,11 @@ import { doc, updateDoc } from 'firebase/firestore';
 import { db } from "../../firebase/config";
 import { Sidebar } from 'primereact/sidebar';
 import _ from 'lodash';
+import Drawer from '@mui/material/Drawer';
+
 
 import AppCommonCollections from '../../firebase/app-collections';
+import Managemembers from '../adminpanel/managemembers';
 
 
 export default function Clublistpage() {
@@ -28,6 +31,9 @@ export default function Clublistpage() {
   const [selectedClub, setSelectedClub] = useState(null);
   const [showDeleteAlert, setDeleteAlert] = useState(false);
   const [selectedClubActivities,setClubActivities] =  useState(null);
+  const [visibleMangemember, setManagemember] = useState(false);
+
+
 
   const actionBodyTemplate = (rowData) => {
     return (
@@ -41,7 +47,10 @@ export default function Clublistpage() {
           outlined
           className="m-r-16 editclub"
           data-pr-tooltip="Edit Club"
-          onClick={() => console.log("edit", rowData)}
+          onClick={() => {
+            setClubVisible(true);
+            setSelectedClub(rowData);
+          }}
         />
         {rowData.status !== null && rowData.status === "Active" && (
           <Button
@@ -57,21 +66,8 @@ export default function Clublistpage() {
             }}
           />
         )}
-        {rowData.status !== null && rowData.status === "Active" && (
-          <Button
-            icon="pi pi-list"
-            rounded
-            outlined
-            className={"clubactivities"}
-            severity="warning"
-            data-pr-tooltip="Manage Club Activities / Events"
-            onClick={() => {
-              setClubActivities(rowData);
-            }}
-          />
-        )}
 
-        <Button
+        {/* <Button
           icon="pi pi-users"
           rounded
           outlined
@@ -83,14 +79,18 @@ export default function Clublistpage() {
               replace: true,
               state: { data: rowData },
             });
+            setSelectedClub(rowData);
+            // setManagemember(true);
+
           }}
-        />
+        /> */}
       </React.Fragment>
     );
   };
 
   const closePanel = (data) => {
     setClubVisible(data);
+    setSelectedClub(null);
   };
 
   const header = (
@@ -104,7 +104,7 @@ export default function Clublistpage() {
           className={"addnewclub m-l-16 m-r-16"}
           data-pr-tooltip="Add New Club"
           severity="success"
-          onClick={() => setClubVisible(true)}
+          onClick={() => {setClubVisible(true);setSelectedClub(null);}}
         />
         <Tooltip target=".addnewclub" mouseTrack mouseTrackLeft={10} />
 
@@ -234,7 +234,7 @@ export default function Clublistpage() {
               body={clubLogoTemplate}
             ></Column>
             <Column field="clubname" sortable header="CLUB NAME"></Column>
-            <Column field="clubno" sortable header="CLUB NAME"></Column>
+            <Column field="clubno" sortable header="CLUB NO"></Column>
             {/* <Column field="specialties" sortable header="SPECIALTIES" body={clubSpecialties} ></Column> */}
             <Column
               field="clubdistrict"
@@ -258,14 +258,20 @@ export default function Clublistpage() {
       ) : (
         ""
       )}
-      <Dialog
-        header={"Add/Edit Club"}
-        visible={visibleClub}
-        style={{ width: "60vw" }}
-        onHide={() => setClubVisible(false)}
-      >
-        <ClubAddandEdit closePanel={closePanel} />
-      </Dialog>
+
+      {visibleClub && (
+        <Sidebar
+          visible={visibleClub}
+          position="right"
+          onHide={() => setClubVisible(false)}
+          style={{ width: "50vw" }}
+          blockScroll={true}
+          dismissable={false}
+          header={"Add / Edit Club"}
+        >
+          <ClubAddandEdit selectedclub={selectedClub} closePanel={closePanel} />
+        </Sidebar>
+      )}
       {/* Delete Club */}
       <Dialog
         header={"Delete Club"}
@@ -273,10 +279,20 @@ export default function Clublistpage() {
         style={{ width: "30vw" }}
         onHide={() => setDeleteClub(false)}
         footer={footerDeleteContent}
+        blockScroll={true}
       >
         <h4 className="m-0">Are you sure want to delete club ?</h4>
       </Dialog>
-
+      {visibleMangemember && (
+        <Sidebar
+          visible={visibleMangemember}
+          onHide={() => setManagemember(false)}
+          style={{ width: "80vw" }}
+          position="right"
+        >
+          <Managemembers selectedclub={selectedClub} />
+        </Sidebar>
+      )}
     </React.Fragment>
   );
 }

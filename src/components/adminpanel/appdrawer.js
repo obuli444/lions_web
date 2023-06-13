@@ -16,10 +16,17 @@ import _ from "lodash";
 import tenantlogo from '../../assets/tenant-logo.png';
 import Breadcrumbs from "@mui/material/Breadcrumbs";
 import Link from "@mui/material/Link";
+import { useLocation } from "react-router-dom";
+import 'primeicons/primeicons.css';
+import AdminHome from './admin-home';
+import ClubActivitieslist from './clubactivitieslist';
+
 
 const drawerWidth = 250;
 
 export default function PermanentDrawerLeft() {
+  const location = useLocation();
+  console.log("location",location);
   const [selectedLink, setSelectedlink] = React.useState({title:'Home',
   component:'dashboardpage'});
   const breadcrumbs = [
@@ -32,16 +39,29 @@ export default function PermanentDrawerLeft() {
   ];
   const componentList = [
     {
+      title: "Home",
+      component: "dashboardpage",
+      icon: 'pi pi-home'
+    },
+    {
       title: "Clubs",
       component: "clublist",
+      icon:'pi pi-users'
     },
     {
       title: "Contact us",
       component: "contactus",
+      icon:'pi pi-comments'
     },
     {
       title: "Become Member",
       component: "becomamember",
+      icon:'pi pi-user'
+    },
+    {
+      title: "Club Activities",
+      component: "clubactivies",
+      icon:'pi pi-list'
     },
   ];
   return (
@@ -86,7 +106,9 @@ export default function PermanentDrawerLeft() {
                   setSelectedlink(text);
                 }}
               >
-                <ListItemText className="admin-navlink" primary={text.title} />
+                <ListItemText className="admin-navlink" primary={
+                  <p className="m-a-0"><i className={text.icon}></i> &nbsp;{text.title}</p>
+                } />
               </ListItemButton>
             </ListItem>
           ))}
@@ -101,9 +123,10 @@ export default function PermanentDrawerLeft() {
           {breadcrumbs}
         </Breadcrumbs>}
         {console.log("selectedLink", selectedLink)}
-        {selectedLink.component === "dashboardpage" && <p>dashboardpage</p>}
-        {selectedLink.component === componentList[0].component && <Clublistpage />}
-        {selectedLink.component === componentList[1].component && <ContactsList />}
+        {selectedLink.component === "dashboardpage" && <AdminHome/>}
+        {selectedLink.component === componentList[1].component && <Clublistpage />}
+        {selectedLink.component === componentList[2].component && <ContactsList />}
+        {selectedLink.component === componentList[4].component && <ClubActivitieslist />}
       </Box>
     </Box>
   );

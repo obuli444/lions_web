@@ -31,7 +31,7 @@ function App() {
   return (
     <React.Fragment>
       <div className="App">
-        {location.pathname!=='/admindashboard'&& <Header />}
+        {location.pathname!=='/admindashboard'&& location.pathname !== '/admindashboard/managemembers'&&<Header />}
         {(location.pathname==='/admindashboard' || location.pathname === '/admindashboard/managemembers')&&  <PermanentDrawerLeft/>}
        
         <div className="routing-content">
@@ -72,7 +72,7 @@ function App() {
 
           </Routes>
         </div>
-        {location.pathname!=='/becomeamember'&&location.pathname!=='/admindashboard'&&location.pathname!=='/managemembers'&&<Footer />}
+        {location.pathname!=='/becomeamember'&&location.pathname!=='/admindashboard'&&location.pathname!=='/admindashboard/managemembers'&&<Footer />}
        
       </div>
     </React.Fragment>

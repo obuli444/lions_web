@@ -8,6 +8,7 @@ const AppCollections =['logodetails',''];
 const ResourcesCollections = ['resourcesdistrict','resourcesdownload','resourcesmobileapp'];
 const ClubandMemberCollections = ['clubdetails','club-memberdetails','activitiessection'];
 const ContactusCollections = ['contactusdetails'];
+const ClubActivitiescollections = ['activitiessection'];
 const OurdistrictCollections = ['aboutus-ourobjective','aboutus-Pastdistrictgovernors']
 
 
@@ -18,7 +19,8 @@ const AppCommonCollections ={
     resourcescollection: ResourcesCollections,
     clubmembercollections: ClubandMemberCollections,
     contactuscollections:ContactusCollections,
-    ourdistrictcollections:OurdistrictCollections
+    ourdistrictcollections:OurdistrictCollections,
+    clubactivitiescollections: ClubActivitiescollections
 
 }
 

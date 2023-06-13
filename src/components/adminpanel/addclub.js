@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { TabView, TabPanel } from "primereact/tabview";
 import Grid from "@mui/material/Grid";
 import Box from "@mui/material/Box";
@@ -9,7 +9,7 @@ import Col from "react-bootstrap/Col";
 import { MultiSelect } from "primereact/multiselect";
 import Base64Convertion from "../common-components/imagetobase64";
 import { db } from "../../firebase/config";
-import { collection, addDoc } from "firebase/firestore";
+import { collection, addDoc,updateDoc,doc } from "firebase/firestore";
 import diabetes from "../../assets/specialties/Diabetes.png";
 import fundraiser from "../../assets/specialties/Fundraiser.png";
 import vision from "../../assets/specialties/Vision.png";
@@ -17,6 +17,7 @@ import hunger from "../../assets/specialties/Hunger.png";
 import environment from "../../assets/specialties/Environment.png";
 import childcancer from "../../assets/specialties/Childcancer.png";
 import AppToast from '../common-components/apptoast';
+import _ from 'lodash';
 
 import AppCommonCollections from '../../firebase/app-collections';
 
@@ -26,6 +27,26 @@ export default function ClubAddandEdit(props) {
   const [selectedSpecialties, setSelectedSpecialties] = useState(null);
   const [isspecselected,setspecSelect] = useState(false);
   const [showAlert, setAlert] = useState(false);
+  const [selctededitclubid,setSelectededitclubid] = useState(!_.isNil(props.selectedclub) ? props.selectedclub:null)
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+    reset,
+    setValue
+  } = useForm();
+   useEffect(()=>{
+    if(!_.isNil(props.selectedclub)){
+      console.log("props",props);
+      const fields = ['clubname','clubdistrict','chartedon','clubno','clubsponsered','extnchairpersion','guidinglions','meetinglocation','meetingdate','meetingtime','clublogo','clubcirtificate'];
+      const valueArr= [];
+      valueArr.push(props.selectedclub);
+      setSelectedSpecialties(props.selectedclub.specialties);
+      setclubLogo(props.selectedclub.clublogo);
+      setCertificate(props.selectedclub.clubcirtificate);
+      fields.forEach(field => setValue(field, valueArr[0][field]));
+    }
+     },[props.selectedclub])
 
   const specialtieslist = [
     {
@@ -68,15 +89,11 @@ export default function ClubAddandEdit(props) {
         </div>
     );
 };
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-    reset,
-  } = useForm();
+  
   async function onSubmit(data) {
     console.log(data);
     let collectionRef = collection(db, AppCommonCollections.clubmembercollections[0]);
+    // const docRef = doc(db, AppCommonCollections.clubmembercollections[0], selctededitclubid);
     const {
       clubname,
       clubdistrict,
@@ -89,22 +106,29 @@ export default function ClubAddandEdit(props) {
       meetingdate,
       meetingtime,
     } = data;
-    await addDoc(collectionRef, {
-      clubname,
-      clubdistrict,
-      chartedon,
-      clubno,
-      clubsponsered,
-      extnchairpersion,
-      guidinglions,
-      meetinglocation,
-      meetingdate,
-      meetingtime,
-      clublogo: clublogourl,
-      clubcirtificate: certificateurl,
-      specialties: selectedSpecialties,
-      status: "Active",
-    });
+    // await addDoc(collectionRef, {
+    //   clubname,
+    //   clubdistrict,
+    //   chartedon,
+    //   clubno,
+    //   clubsponsered,
+    //   extnchairpersion,
+    //   guidinglions,
+    //   meetinglocation,
+    //   meetingdate,
+    //   meetingtime,
+    //   clublogo: clublogourl,
+    //   clubcirtificate: certificateurl,
+    //   specialties: selectedSpecialties,
+    //   status: "Active",
+    // });
+    console.log("selctededitclubid");
+    if(!_.isNil(selctededitclubid)){
+      console.log("edit mode");
+      console.log("data",data);
+    }else{
+      console.log("add mode");
+    }
     setAlert(true);
     reset();
     setTimeout(() => {
@@ -404,7 +428,7 @@ export default function ClubAddandEdit(props) {
                               className="form-control"
                               type="file"
                               {...register("clublogo", {
-                                required: true,
+                                required: false,
                               })}
                               id="clublogo"
                               placeholder="Club logo"

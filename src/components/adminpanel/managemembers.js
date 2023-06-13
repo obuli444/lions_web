@@ -28,7 +28,7 @@ import profileplaceholer from '../../assets/profile-placeholder.svg';
 import { doc, updateDoc } from 'firebase/firestore';
 import AppCommonCollections from "../../firebase/app-collections";
 
-export default function Managemembers() {
+export default function Managemembers(props) {
   const { fbdbdata: clubmemberdetails } =
     useFetchCollection(AppCommonCollections.clubmembercollections[1]);
   const location = useLocation();
@@ -634,6 +634,9 @@ function DeleteMemberdetails(){
                           className="form-control"
                           type="file"
                           id="profileimage"
+                          {...register("profileimage", {
+                            required: true,
+                          })}
                           placeholder="Profile Image"
                           accept="image/*"
                           onChange={(e) => {
