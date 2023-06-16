@@ -27,7 +27,7 @@ export default function ClubAddandEdit(props) {
   const [selectedSpecialties, setSelectedSpecialties] = useState(null);
   const [isspecselected,setspecSelect] = useState(false);
   const [showAlert, setAlert] = useState(false);
-  const [selctededitclubid,setSelectededitclubid] = useState(!_.isNil(props.selectedclub) ? props.selectedclub:null)
+  const [selctededitclubid,setSelectededitclubid] = useState(!_.isNil(props.selectedclub) ? props.selectedclub.id:null)
   const {
     register,
     handleSubmit,
@@ -93,7 +93,6 @@ export default function ClubAddandEdit(props) {
   async function onSubmit(data) {
     console.log(data);
     let collectionRef = collection(db, AppCommonCollections.clubmembercollections[0]);
-    // const docRef = doc(db, AppCommonCollections.clubmembercollections[0], selctededitclubid);
     const {
       clubname,
       clubdistrict,
@@ -106,28 +105,50 @@ export default function ClubAddandEdit(props) {
       meetingdate,
       meetingtime,
     } = data;
-    // await addDoc(collectionRef, {
-    //   clubname,
-    //   clubdistrict,
-    //   chartedon,
-    //   clubno,
-    //   clubsponsered,
-    //   extnchairpersion,
-    //   guidinglions,
-    //   meetinglocation,
-    //   meetingdate,
-    //   meetingtime,
-    //   clublogo: clublogourl,
-    //   clubcirtificate: certificateurl,
-    //   specialties: selectedSpecialties,
-    //   status: "Active",
-    // });
     console.log("selctededitclubid");
-    if(!_.isNil(selctededitclubid)){
+    if (!_.isNil(selctededitclubid)) {
+      const docRef = doc(
+        db,
+        AppCommonCollections.clubmembercollections[0],
+        selctededitclubid
+      );
       console.log("edit mode");
-      console.log("data",data);
-    }else{
-      console.log("add mode");
+      console.log("data", data);
+      const updatedObj = {
+        clubname,
+        clubdistrict,
+        chartedon,
+        clubno,
+        clubsponsered,
+        extnchairpersion,
+        guidinglions,
+        meetinglocation,
+        meetingdate,
+        meetingtime,
+        clublogo: clublogourl,
+        clubcirtificate: certificateurl,
+        specialties: selectedSpecialties,
+        status: "Active",
+      };
+      console.log("updatedObj", updatedObj);
+      await updateDoc(docRef, updatedObj);
+    } else {
+      await addDoc(collectionRef, {
+        clubname,
+        clubdistrict,
+        chartedon,
+        clubno,
+        clubsponsered,
+        extnchairpersion,
+        guidinglions,
+        meetinglocation,
+        meetingdate,
+        meetingtime,
+        clublogo: clublogourl,
+        clubcirtificate: certificateurl,
+        specialties: selectedSpecialties,
+        status: "Active",
+      });
     }
     setAlert(true);
     reset();

@@ -11,11 +11,9 @@ import { Dialog } from "primereact/dialog";
 import ClubAddandEdit from "../adminpanel/addclub";
 import { useNavigate } from "react-router-dom";
 import AppToast from '../common-components/apptoast';
-import { doc, updateDoc } from 'firebase/firestore';
+import { doc, updateDoc,deleteDoc } from 'firebase/firestore';
 import { db } from "../../firebase/config";
 import { Sidebar } from 'primereact/sidebar';
-import _ from 'lodash';
-import Drawer from '@mui/material/Drawer';
 
 
 import AppCommonCollections from '../../firebase/app-collections';

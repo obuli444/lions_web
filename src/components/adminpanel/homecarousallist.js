@@ -14,18 +14,68 @@ import { Dialog } from "primereact/dialog";
 import { Sidebar } from 'primereact/sidebar';
 import { doc, updateDoc,deleteDoc } from 'firebase/firestore';
 import { db } from "../../firebase/config";
+import moment from "moment";
 import Addedithomecarousal from './addeditcarousal';
 
 export default function HomeCarousallist() {
 
     const { fbdbdata: homecarousaldeatsils } = useFetchCollection(AppCommonCollections.homepagecollections[7]);
-    console.log("homecarousaldeatsils",homecarousaldeatsils);
     const [globalFilter, setGlobalFilter] = useState(null);
     const [visibleaddSlider, setaddSlider] = useState(false);
+    const [SelectedSlide,setSelectedSlide] =  useState(null);
+    const [setdeleteslide,setDeleteSlide] = useState(false);
 
     const statusBodyTemplate = (rowData) => {
       return (
-        <Tag value={rowData.status} severity={getSeverity(rowData.status)}></Tag>
+        <Tag value={rowData.sliderstatus} severity={getSeverity(rowData.sliderstatus)}></Tag>
+      );
+    };
+
+  const closePanel = (data) => {
+    setaddSlider(data);
+    setSelectedSlide(null);
+  };
+    const actionBodyTemplate = (rowData) => {
+      return (
+        <React.Fragment>
+          <Tooltip target=".clubmembers" mouseTrack mouseTrackLeft={10} />
+          <Tooltip target=".clubactivities" mouseTrack mouseTrackLeft={10} />
+  
+          <Button
+            icon="pi pi-pencil"
+            rounded
+            outlined
+            className="m-r-16 editclub"
+            data-pr-tooltip="Edit Club"
+            onClick={() => {
+              setaddSlider(true);
+              setSelectedSlide(rowData);
+            }}
+          />
+          {rowData.sliderstatus !== null && rowData.sliderstatus === "Active" && (
+            <Button
+              icon="pi pi-trash"
+              rounded
+              outlined
+              className={"deleteslider"}
+              severity="danger m-r-16 "
+              data-pr-tooltip="Delete Slider"
+              onClick={() => {
+                setDeleteSlide(true);
+                setSelectedSlide(rowData);
+              }}
+            />
+          )}
+        </React.Fragment>
+      );
+    };
+    const createdAtTemplate = (rowData) => {
+      return (
+        <React.Fragment>
+          {!_.isNil(rowData.createdt)
+            ? moment(rowData.createdt.toDate()).format("LLLL")
+            : null}
+        </React.Fragment>
       );
     };
     const getSeverity = (status) => {
@@ -42,7 +92,7 @@ export default function HomeCarousallist() {
     const sliderimageTemplate = (rowdata) => {
       return (
         <React.Fragment>
-          <img src={rowdata.clublogo} alt={rowdata.clubname} width={"50px"} />
+          <img src={rowdata.sliderimageurl} alt={rowdata.slidertitle} width={"120px"} />
         </React.Fragment>
       );
     };
@@ -57,7 +107,7 @@ export default function HomeCarousallist() {
             className={"addnewslider m-l-16 m-r-16"}
             data-pr-tooltip="Add New Club"
             severity="success"
-            onClick={() => {setaddSlider(true);}}
+            onClick={() => {setSelectedSlide(null);setaddSlider(true);}}
           />
           <Tooltip target=".addnewslider" mouseTrack mouseTrackLeft={10} />
   
@@ -84,19 +134,27 @@ export default function HomeCarousallist() {
             tableStyle={{ minWidth: "50rem" }}
           >
             <Column
-              field="sliderimage"
+              field="sliderimageurl"
               sortable
               header="SLIDER IMAGE"
               body={sliderimageTemplate}
             ></Column>
             <Column field="slidertitle" sortable header="SLIDER TITLE"></Column>
-            <Column field="slidersubtitle" sortable header="SLIDER SUB-TITLE"></Column>
+            <Column field="sliderdescription" sortable header="SLIDER SUB-TITLE"></Column>
             <Column
-              field="status"
+              field="sliderstatus"
               sortable
               header="STATUS"
               body={statusBodyTemplate}
             ></Column>
+             <Column
+              field="createdt"
+              sortable
+              header="CREATED DATE"
+              body={createdAtTemplate}
+            ></Column>
+            <Column body={actionBodyTemplate} exportable={false}></Column>
+
           </DataTable>
         </div>): (<Message severity="info" className="w-100" text="No Records Found" />)}
         {visibleaddSlider && (
@@ -109,7 +167,7 @@ export default function HomeCarousallist() {
           dismissable={false}
           header={"Add / Edit Carousal"}
         >
-          <Addedithomecarousal/>
+          <Addedithomecarousal selectedcarousal={SelectedSlide} closePanel={closePanel}/>
         </Sidebar>
       )}
   </React.Fragment>;

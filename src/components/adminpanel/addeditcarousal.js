@@ -1,24 +1,43 @@
-import React, { useState } from "react";
+import React, { useState,useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { Button } from "primereact/button";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import _ from 'lodash';
 import { InputSwitch } from "primereact/inputswitch";
+import { collection, addDoc,updateDoc,doc,serverTimestamp } from "firebase/firestore";
+import AppCommonCollections from '../../firebase/app-collections';
+import { db } from "../../firebase/config";
 
 
-export default function Addedithomecarousal() {
+export default function Addedithomecarousal(props) {
   const [sliderImage, setSliderImage] = useState(null);
   const [setlinkenabled, setlinkEnabled] = useState(false);
-  const [slideActive,setSlideActive] =  useState(true);
+  const [slideActive, setSlideActive] = useState(true);
+  const [selectedCarousalid, setselectedCarousalId] = useState(
+    !_.isNil(props.selectedcarousal) ? props.selectedcarousal.id : null
+  );
+  useEffect(()=>{
+    if(!_.isNil(props.selectedcarousal)){
+      const fields = ['sliderimageurl','slidertitle','sliderdescription','sliderbtntext','sliderbtnlink','sliderstatus','guidinglions','meetinglocation','meetingdate','meetingtime','clublogo','clubcirtificate'];
+      const valueArr= [];
+      valueArr.push(props.selectedcarousal);
+      setlinkEnabled(props.selectedcarousal.sliderbtnenabled);
+      setSliderImage(props.selectedcarousal.sliderimageurl)
+      setSlideActive(props.selectedcarousal.statusbtnenabled);
+      fields.forEach(field => setValue(field, valueArr[0][field]));
+    }
+     },[props.selectedcarousal])
   const defaultValues = {
-    sliderimage: "",
-    slidertitle: "",
-    sliderdescription: "",
-    sliderbtntext: "",
-    sliderbtnlink: "",
-    sliderstatus: '',
-    sliderimageurl: "",
+    sliderimage: null,
+    slidertitle: null,
+    sliderdescription: null,
+    sliderbtntext: null,
+    sliderbtnlink: null,
+    sliderbtnenabled: null,
+    sliderstatus: slideActive?'Active':'Inactive',
+    sliderimageurl: '',
+    statusbtnenabled:slideActive?true:false, 
   };
   const {
     formState: { errors },
@@ -27,11 +46,41 @@ export default function Addedithomecarousal() {
     register,
     reset,
   } = useForm({ defaultValues });
-  const onSubmit = (data) => {
+  async function onSubmit(data) {
+    let collectionRef = collection(
+      db,
+      AppCommonCollections.homepagecollections[7]
+    );
     console.log("data", data);
+    const {
+      sliderimageurl,
+      slidertitle,
+      sliderdescription,
+      sliderbtntext,
+      sliderbtnlink,
+      sliderstatus,
+      sliderbtnenabled,
+      statusbtnenabled
+    } = data;
+    if (!_.isNil(selectedCarousalid)) {
+      console.log("edit mode");
+    } else {
+      await addDoc(collectionRef, {
+        sliderimageurl,
+        slidertitle,
+        sliderdescription,
+        sliderbtntext,
+        sliderbtnlink,
+        sliderstatus,
+        sliderbtnenabled,
+        statusbtnenabled,
+        createdt: serverTimestamp(),
+      });
+    }
+    props.closePanel(false);
     setSliderImage(null);
     reset();
-  };
+  }
 
   return (
     <React.Fragment>
@@ -49,13 +98,12 @@ export default function Addedithomecarousal() {
                   className="form-control"
                   type="file"
                   {...register("sliderimage", {
-                    required: true,
+                    required: !_.isNil(selectedCarousalid) ? false: true,
                   })}
                   id="sliderimage"
-                  placeholder="Club logo"
+                  placeholder="Slider Image"
                   accept="image/*"
                   onChange={(e) => {
-                    // const confile = Base64Convertion(e.target.files);
                     const selectedfile = e.target.files;
                     if (selectedfile.length > 0) {
                       const [imageFile] = selectedfile;
@@ -139,14 +187,13 @@ export default function Addedithomecarousal() {
           <Row className="p-b-16">
             <Col className="p-a-0 col-12">
               <div className="p-b-8">
-                <label>
-                  Slider Button
-                </label>
+                <label>Slider Button</label>
               </div>
               <InputSwitch
                 checked={setlinkenabled}
                 onChange={(e) => {
                   setlinkEnabled(e.value);
+                  setValue("sliderbtnenabled", e.value);
                   console.log(e.value);
                 }}
               />
@@ -165,7 +212,7 @@ export default function Addedithomecarousal() {
                     className="form-control"
                     type="text"
                     {...register("sliderbtntext", {
-                      required: setlinkenabled ? true:false,
+                      required: setlinkenabled ? true : false,
                     })}
                     id="sliderbtntext"
                     placeholder="Slider Button text"
@@ -188,7 +235,7 @@ export default function Addedithomecarousal() {
                     className="form-control"
                     type="text"
                     {...register("sliderbtnlink", {
-                      required: setlinkenabled ? true:false,
+                      required: setlinkenabled ? true : false,
                     })}
                     id="sliderbtnlink"
                     placeholder="Slider Button text"
@@ -201,7 +248,6 @@ export default function Addedithomecarousal() {
                 </div>
               </Col>
             </Row>
-            
           )}
           <Row className="p-b-16">
             <Col className="p-a-0 col-12">
@@ -213,8 +259,12 @@ export default function Addedithomecarousal() {
               <InputSwitch
                 checked={slideActive}
                 onChange={(e) => {
-                setSlideActive(e.value);
-                setValue("sliderstatus",e.value===true? 'Active':'Inactive')
+                  setSlideActive(e.value);
+                  setValue(
+                    "sliderstatus",
+                    e.value === true ? "Active" : "Inactive"
+                  );
+                  setValue("statusbtnenabled", e.value === true ? true : false);
                 }}
               />
             </Col>
