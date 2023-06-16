@@ -8,12 +8,16 @@ import { InputSwitch } from "primereact/inputswitch";
 import { collection, addDoc,updateDoc,doc,serverTimestamp } from "firebase/firestore";
 import AppCommonCollections from '../../firebase/app-collections';
 import { db } from "../../firebase/config";
+import AppToast from '../common-components/apptoast';
+
 
 
 export default function Addedithomecarousal(props) {
   const [sliderImage, setSliderImage] = useState(null);
   const [setlinkenabled, setlinkEnabled] = useState(false);
   const [slideActive, setSlideActive] = useState(true);
+  const [showAlert,setAlert] = useState(false);
+  const [showAlerttext,setAlerttext] =  useState("");
   const [selectedCarousalid, setselectedCarousalId] = useState(
     !_.isNil(props.selectedcarousal) ? props.selectedcarousal.id : null
   );
@@ -63,7 +67,25 @@ export default function Addedithomecarousal(props) {
       statusbtnenabled
     } = data;
     if (!_.isNil(selectedCarousalid)) {
+      const docRef = doc(
+        db,
+        AppCommonCollections.homepagecollections[7],
+        selectedCarousalid
+      );
+      const updatedObj = {
+      sliderimageurl,
+        slidertitle,
+        sliderdescription,
+        sliderbtntext,
+        sliderbtnlink,
+        sliderstatus,
+        sliderbtnenabled,
+        statusbtnenabled,
+        createdt: serverTimestamp(),
+      };
+      await updateDoc(docRef, updatedObj);
       console.log("edit mode");
+      setAlerttext("Slide Updated Successfully!")
     } else {
       await addDoc(collectionRef, {
         sliderimageurl,
@@ -76,14 +98,20 @@ export default function Addedithomecarousal(props) {
         statusbtnenabled,
         createdt: serverTimestamp(),
       });
+      setAlerttext("Slide Added Successfully!")
     }
     props.closePanel(false);
     setSliderImage(null);
     reset();
+    setAlert(true);
+    setTimeout(() => {
+      setAlert(false);
+    }, 3000);
   }
 
   return (
     <React.Fragment>
+      {showAlert && <AppToast showAleart={showAlert} icon="mgc_check_circle_fill" message={showAlerttext} />}
       <div className="p-a-24">
         <form onSubmit={handleSubmit(onSubmit)}>
           <Row className="p-b-16">
