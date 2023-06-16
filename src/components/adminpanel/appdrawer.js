@@ -20,6 +20,7 @@ import { useLocation } from "react-router-dom";
 import 'primeicons/primeicons.css';
 import AdminHome from './admin-home';
 import ClubActivitieslist from './clubactivitieslist';
+import HomeCarousallist from './homecarousallist';
 
 
 const drawerWidth = 250;
@@ -63,6 +64,11 @@ export default function PermanentDrawerLeft() {
       component: "clubactivies",
       icon:'pi pi-list'
     },
+    {
+      title: "Home Sliders",
+      component: "homesliders",
+      icon:'pi pi-sliders-h'
+    }
   ];
   return (
     <Box sx={{ display: "flex" }}  className="admin-dashboard-sidenav">
@@ -127,6 +133,8 @@ export default function PermanentDrawerLeft() {
         {selectedLink.component === componentList[1].component && <Clublistpage />}
         {selectedLink.component === componentList[2].component && <ContactsList />}
         {selectedLink.component === componentList[4].component && <ClubActivitieslist />}
+        {selectedLink.component === componentList[5].component && <HomeCarousallist />}
+
       </Box>
     </Box>
   );

@@ -126,16 +126,7 @@ const footerDeleteContent = (
               }}
             />
           ) : (
-            <Button
-              icon="pi pi-trash"
-              rounded
-              outlined
-              severity={"warning"}
-              className={"deletecontact m-l-16"}
-              disabled
-              type="button"
-              label="Bulk Delete"
-            />
+            ""
           )}
         </span>
       </span>

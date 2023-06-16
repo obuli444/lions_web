@@ -317,7 +317,7 @@ border-radius: 16px;
     border-radius: 8px;
 }
 .m-b-8{
-    margin-bottom: 8px;
+    margin-bottom: 8px !important;
 }
 .programs-description-text {
     font-family: $font-family !important;
@@ -647,7 +647,7 @@ color: $white;
 .p-b-24{
     padding-bottom: 24px !important;
 }
-.pi-home,.pi-icon,.pi-users,.pi-user,.pi-comments,.pi-list{
+.pi-home,.pi-icon,.pi-users,.pi-user,.pi-comments,.pi-list,.pi-sliders-h{
     font-size: 24px !important;
     cursor: pointer; 
     vertical-align: bottom;

@@ -2,7 +2,7 @@
 
 // Application Const - Collections
 
-const HomepageCollections =['ourmission','ourleaderssection','ourmissionsectiontitle','programssectiontitle','programsandinitiatives','homecontributers','hometwittersection'];
+const HomepageCollections =['ourmission','ourleaderssection','ourmissionsectiontitle','programssectiontitle','programsandinitiatives','homecontributers','hometwittersection','homecarousaldetails'];
 const FooteCollections = ['footeradsectionone','footeradsectiontwo','footerlogo'];
 const AppCollections =['logodetails',''];
 const ResourcesCollections = ['resourcesdistrict','resourcesdownload','resourcesmobileapp'];
