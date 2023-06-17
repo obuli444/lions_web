@@ -48,7 +48,7 @@ export default function CarousalSection(){
       },
     ];
     return<React.Fragment>
-    <Carousel interval={500000}>
+    <Carousel interval={4000}>
       {carousalItems.map((ele,index)=>{
         return  <Carousel.Item key={index}>
         <img

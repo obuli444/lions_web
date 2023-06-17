@@ -18,6 +18,7 @@ export default function Addedithomecarousal(props) {
   const [slideActive, setSlideActive] = useState(true);
   const [showAlert,setAlert] = useState(false);
   const [showAlerttext,setAlerttext] =  useState("");
+  const [setFilelimit,setFilelimitError] = useState(false);
   const [selectedCarousalid, setselectedCarousalId] = useState(
     !_.isNil(props.selectedcarousal) ? props.selectedcarousal.id : null
   );
@@ -113,7 +114,7 @@ export default function Addedithomecarousal(props) {
     <React.Fragment>
       {showAlert && <AppToast showAleart={showAlert} icon="mgc_check_circle_fill" message={showAlerttext} />}
       <div className="p-a-24">
-        <form onSubmit={handleSubmit(onSubmit)}>
+        <form onSubmit={handleSubmit(onSubmit)}  autoComplete="off">
           <Row className="p-b-16">
             <Col className="p-a-0 col-12">
               <div className="p-b-8">
@@ -124,6 +125,7 @@ export default function Addedithomecarousal(props) {
               <div className="p-b-8">
                 <input
                   className="form-control"
+                  maxsize="1000"
                   type="file"
                   {...register("sliderimage", {
                     required: !_.isNil(selectedCarousalid) ? false: true,
@@ -133,7 +135,8 @@ export default function Addedithomecarousal(props) {
                   accept="image/*"
                   onChange={(e) => {
                     const selectedfile = e.target.files;
-                    if (selectedfile.length > 0) {
+                    if (selectedfile.length > 0 && e.target.files[0].size < 1 * 1000 * 1024) {
+                      setFilelimitError(false);
                       const [imageFile] = selectedfile;
                       const fileReader = new FileReader();
                       fileReader.onload = () => {
@@ -142,6 +145,14 @@ export default function Addedithomecarousal(props) {
                         setSliderImage(srcData);
                       };
                       fileReader.readAsDataURL(imageFile);
+                    }else{
+                      setFilelimitError(true);
+                      setValue("sliderimageurl", null);
+                      setSliderImage(null);
+                      setValue("sliderimage",null);
+
+
+
                     }
                   }}
                 />
@@ -150,6 +161,9 @@ export default function Addedithomecarousal(props) {
                     Slider Image logo is required
                   </span>
                 )}
+                {setFilelimit&& <span className="error-span">
+                File with maximum size of 1MB is allowed
+                  </span>}
               </div>
             </Col>
             {!_.isNil(sliderImage) && (
