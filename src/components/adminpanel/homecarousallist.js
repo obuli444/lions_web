@@ -208,7 +208,7 @@ export default function HomeCarousallist() {
             <Column
               field="sliderdescription"
               sortable
-              header="SLIDER SUB-TITLE"
+              header="SLIDER DESCRIPTION"
             ></Column>
             <Column
               field="sliderstatus"
@@ -280,16 +280,14 @@ export default function HomeCarousallist() {
         </Dialog>
       }
       {playCarousal && (
-        <Sidebar
+        <Dialog
           header={"Slider Preview"}
           visible={playCarousal}
           style={{ width: "60vw"}}
           position={"top"}
           onHide={() => setPlayCarousal(false)}
           blockScroll={false}
-          fullScreen
-          className="play-carousal-bar"
-        >
+          >
           <Carousel interval={4000}>
             {(homecarousaldeatsils.filter((ele)=>ele.sliderstatus==="Active")).map((ele, index) => {
               return (
@@ -314,7 +312,7 @@ export default function HomeCarousallist() {
               );
             })}
           </Carousel>
-        </Sidebar>
+        </Dialog>
       )}
     </React.Fragment>
   );
