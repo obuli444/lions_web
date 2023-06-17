@@ -153,6 +153,21 @@ $secondary-color: #2E5D88;
     font-family: $font-family;
     cursor: pointer;
 }
+.slider-learn-btn{
+    background: $active-color;
+    border-radius: 56px;
+    font-style: normal;
+    font-weight: 400;
+    font-size: $font-size;
+    padding: 12px 16px;
+    font-family: $font-family;
+    cursor: pointer;
+    width: auto !important;
+    a{
+        color: $black;
+        font-weight: 500;
+    }
+}
 
 .dropdown-item {
     padding: 8px 16px;
@@ -476,6 +491,7 @@ border-radius: 16px;
     .MuiDrawer-docked{
         .MuiDrawer-paper {
             background: $primary-color !important;
+            z-index: 0 !important;
         }
     }
 }

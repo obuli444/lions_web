@@ -280,39 +280,61 @@ export default function HomeCarousallist() {
         </Dialog>
       }
       {playCarousal && (
-        <Dialog
+        <Sidebar
           header={"Slider Preview"}
           visible={playCarousal}
-          style={{ width: "60vw"}}
+          style={{ width: "60vw" }}
           position={"top"}
           onHide={() => setPlayCarousal(false)}
           blockScroll={false}
-          >
-          <Carousel interval={4000}>
-            {(homecarousaldeatsils.filter((ele)=>ele.sliderstatus==="Active")).map((ele, index) => {
-              return (
-                <Carousel.Item key={index}>
-                  <img
-                    className="d-block w-100 carousal-image"
-                    src={ele.sliderimageurl}
-                    alt={ele.slidertitle}
-                  />
+          fullScreen
+        >
+          <Carousel interval={3000}>
+            {homecarousaldeatsils
+              .filter((ele) => ele.sliderstatus === "Active")
+              .map((ele, index) => {
+                return (
+                  <Carousel.Item key={index}>
+                    <img
+                      className="d-block w-100 carousal-image"
+                      src={ele.sliderimageurl}
+                      alt={ele.slidertitle}
+                    />
 
-                  <Carousel.Caption>
-                    <Row>
-                      <Col><h3>{ele.slidertitle}</h3></Col>
-                      <Col></Col>
-                    </Row>
-                    <Row>
-                      <Col>  <p>{ele.sliderdescription}</p></Col>
-                      <Col></Col>
-                    </Row>
-                  </Carousel.Caption>
-                </Carousel.Item>
-              );
-            })}
+                    <Carousel.Caption>
+                      <Row>
+                        <Col>
+                          <h3>{ele.slidertitle}</h3>
+                        </Col>
+                        <Col></Col>
+                      </Row>
+                      <Row>
+                        <Col>
+                          {" "}
+                          <p>{ele.sliderdescription}</p>
+                        </Col>
+                        <Col></Col>
+                      </Row>
+                      {ele.sliderbtnenabled && (
+                        <Row>
+                          <>
+                            {" "}
+                            <p className="slider-learn-btn">
+                              <a href={ele.sliderbtnlink} target="_blank">
+                                {" "}
+                                {ele.sliderbtntext}
+                              </a>
+                            </p>
+                          </>
+                          <Col></Col>
+                        </Row>
+                      )}
+                    </Carousel.Caption>
+                  </Carousel.Item>
+                );
+              })}
           </Carousel>
-        </Dialog>
+        </Sidebar>
       )}
     </React.Fragment>
   );
