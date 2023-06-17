@@ -269,23 +269,26 @@ export default function HomeCarousallist() {
       )}
       {
         <Dialog
-          header={"Delete Club"}
+          header={"Delete Slide"}
           visible={setdeleteslide}
           style={{ width: "30vw" }}
           onHide={() => setDeleteSlide(false)}
           footer={footerDeleteContent}
           blockScroll={true}
         >
-          <h4 className="m-0">Are you sure want to delete club ?</h4>
+          <h4 className="m-0">Are you sure want to delete Slide ?</h4>
         </Dialog>
       }
       {playCarousal && (
-        <Dialog
+        <Sidebar
           header={"Slider Preview"}
           visible={playCarousal}
-          style={{ width: "50vw" }}
+          style={{ width: "60vw"}}
+          position={"top"}
           onHide={() => setPlayCarousal(false)}
           blockScroll={false}
+          fullScreen
+          className="play-carousal-bar"
         >
           <Carousel interval={4000}>
             {(homecarousaldeatsils.filter((ele)=>ele.sliderstatus==="Active")).map((ele, index) => {
@@ -311,7 +314,7 @@ export default function HomeCarousallist() {
               );
             })}
           </Carousel>
-        </Dialog>
+        </Sidebar>
       )}
     </React.Fragment>
   );

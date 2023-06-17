@@ -339,6 +339,11 @@ border-radius: 16px;
 .managemembe-empty{
     padding: 0 24px 24px;
 }
+.play-carousal-bar{
+    .p-sidebar-mask.p-component-overlay{
+        z-index: 99999 !important;
+    }
+}
 .club-input{
     background: $white;
     border: 1px solid $primary-bg;
