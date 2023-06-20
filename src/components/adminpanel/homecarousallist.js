@@ -18,7 +18,7 @@ import moment from "moment";
 import Addedithomecarousal from './addeditcarousal';
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
-import Carousel from 'react-bootstrap/Carousel';
+import CarousalSection from '../carousalsection';
 
 
 export default function HomeCarousallist() {
@@ -289,51 +289,7 @@ export default function HomeCarousallist() {
           blockScroll={false}
           fullScreen
         >
-          <Carousel interval={3000}>
-            {homecarousaldeatsils
-              .filter((ele) => ele.sliderstatus === "Active")
-              .map((ele, index) => {
-                return (
-                  <Carousel.Item key={index}>
-                    <img
-                      className="d-block w-100 carousal-image"
-                      src={ele.sliderimageurl}
-                      alt={ele.slidertitle}
-                    />
-
-                    <Carousel.Caption>
-                      <Row>
-                        <Col>
-                          <h3>{ele.slidertitle}</h3>
-                        </Col>
-                        <Col></Col>
-                      </Row>
-                      <Row>
-                        <Col>
-                          {" "}
-                          <p>{ele.sliderdescription}</p>
-                        </Col>
-                        <Col></Col>
-                      </Row>
-                      {ele.sliderbtnenabled && (
-                        <Row>
-                          <>
-                            {" "}
-                            <p className="slider-learn-btn">
-                              <a href={ele.sliderbtnlink} target="_blank">
-                                {" "}
-                                {ele.sliderbtntext}
-                              </a>
-                            </p>
-                          </>
-                          <Col></Col>
-                        </Row>
-                      )}
-                    </Carousel.Caption>
-                  </Carousel.Item>
-                );
-              })}
-          </Carousel>
+         <CarousalSection carousaldetails={homecarousaldeatsils}/>
         </Sidebar>
       )}
     </React.Fragment>

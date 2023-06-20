@@ -21,6 +21,7 @@ import 'primeicons/primeicons.css';
 import AdminHome from './admin-home';
 import ClubActivitieslist from './clubactivitieslist';
 import HomeCarousallist from './homecarousallist';
+import Managemembers from './managemembers';
 
 
 const drawerWidth = 250;
@@ -132,6 +133,7 @@ export default function PermanentDrawerLeft() {
         {selectedLink.component === "dashboardpage" && <AdminHome/>}
         {selectedLink.component === componentList[1].component && <Clublistpage />}
         {selectedLink.component === componentList[2].component && <ContactsList />}
+        {selectedLink.component === componentList[3].component && <Managemembers />}
         {selectedLink.component === componentList[4].component && <ClubActivitieslist />}
         {selectedLink.component === componentList[5].component && <HomeCarousallist />}
 

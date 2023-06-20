@@ -135,6 +135,7 @@ export default function Managemembers(props) {
           className={"addnewmember m-l-16 m-r-16"}
           data-pr-tooltip="Add New Member"
           severity="success"
+          label="Add New Member"
           onClick={() => {
             setAddmember(true);
           }}
@@ -244,25 +245,15 @@ function DeleteMemberdetails(){
           message={`Member Added Successfully`}
         />
       )}
-            {showDeleteAlert&&  <AppToast showAleart={showDeleteAlert} icon="mgc_check_circle_fill" message={`Member Deleted Sucessfully`} />}
-      <Stack spacing={2} className="p-a-24">
-        <Breadcrumbs separator="›" aria-label="breadcrumb">
-          {breadcrumbs}
-        </Breadcrumbs>
-      </Stack>
-      {!_.isNil(clubmemberdetails) &&
-      clubmemberdetails.filter(
-        (ele) => ele.mappedclub === location.state?.data?.clubno
-      ).length !== 0 ? (
+      {showDeleteAlert&&  <AppToast showAleart={showDeleteAlert} icon="mgc_check_circle_fill" message={`Member Deleted Sucessfully`} />}
+      {!_.isNil(clubmemberdetails) ? (
         <div className="card">
           <DataTable
             paginator
             rows={20}
             globalFilter={globalFilter}
             header={header}
-            value={clubmemberdetails.filter(
-              (ele) => ele.mappedclub === location.state?.data?.clubno
-            )}
+            value={clubmemberdetails}
             showGridlines
             tableStyle={{ minWidth: "50rem" }}
           >
