@@ -12,7 +12,6 @@ import ListItemButton from "@mui/material/ListItemButton";
 import ListItemText from "@mui/material/ListItemText";
 import ContactsList from "../adminpanel/contactslist";
 import Clublistpage from "../adminpanel/clublistpage";
-import _ from "lodash";
 import tenantlogo from '../../assets/tenant-logo.png';
 import Breadcrumbs from "@mui/material/Breadcrumbs";
 import Link from "@mui/material/Link";

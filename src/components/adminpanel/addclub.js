@@ -7,7 +7,6 @@ import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import { MultiSelect } from "primereact/multiselect";
-import Base64Convertion from "../common-components/imagetobase64";
 import { db } from "../../firebase/config";
 import { collection, addDoc,updateDoc,doc } from "firebase/firestore";
 import diabetes from "../../assets/specialties/Diabetes.png";
